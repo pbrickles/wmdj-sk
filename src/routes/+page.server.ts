@@ -2,16 +2,15 @@ import { fetchEpisodes } from '$lib/server/helpers/fetchEpisodes.js';
 import type { TransistorEpisodesResults } from '$lib/types/transistor.js';
 import { error } from '@sveltejs/kit';
 
-export async function load({ fetch, params }) {
+export async function load({ fetch }) {
 	const res = await fetchEpisodes(fetch);
 	if (res.ok) {
 		const { data }: TransistorEpisodesResults = await res.json();
-		const episode = data.find((episode) => episode.attributes.slug === params.slug);
-		if (episode) {
+		if (data) {
 			return {
 				status: 200,
 				body: {
-					episode
+					episodes: data
 				}
 			};
 		}
@@ -22,7 +21,5 @@ export async function load({ fetch, params }) {
 		});
 	}
 
-	throw error(404, {
-		message: 'Episode not found'
-	});
+	throw error(404, 'Episodes not found');
 }
