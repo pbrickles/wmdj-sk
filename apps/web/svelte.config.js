@@ -15,14 +15,6 @@ const config = {
 		files: {
 			lib: "src/lib"
 		},
-		csp: {
-			directives: {
-				"script-src": ["self"]
-			},
-			reportOnly: {
-				"script-src": ["self"]
-			}
-		}
 	}
 };
 
