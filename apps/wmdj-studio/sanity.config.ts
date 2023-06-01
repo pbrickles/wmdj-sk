@@ -2,15 +2,17 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
 import { getSanityConfig } from "./config";
-import { authorSchema } from "./schemas/documents/author";
-import { siteSettingsSchema } from "./schemas/documents/siteSettings";
-import { bannerSchema } from "./schemas/documents/banner";
-import { postSchema } from "./schemas/documents/post";
-import { categorySchema } from "./schemas/documents/category";
-import { linksLandingPageSchema } from "./schemas/documents/linksLandingPage";
-import { linksPageSchema } from "./schemas/documents/linksPage";
-import { navigationSchema } from "./schemas/documents/navigation";
-import { pageSchema } from "./schemas/documents/page";
+import {
+	authorSchema,
+	bannerSchema,
+	siteSettingsSchema,
+	postSchema,
+	categorySchema,
+	linksLandingPageSchema,
+	linksPageSchema,
+	navigationSchema,
+	pageSchema
+} from "sanity-schema";
 
 const sanityConfig = getSanityConfig();
 

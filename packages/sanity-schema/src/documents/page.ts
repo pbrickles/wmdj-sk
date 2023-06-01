@@ -1,7 +1,6 @@
 // import { format } from "date-fns";
 
 import { s } from "@sanity-typed/schema-builder";
-import { createSlugSchema } from "../objects/createSlugSchema";
 import { mainImageSchema } from "../objects/mainImage";
 import { bodyPortableTextSchema } from "../objects/bodyPortableText";
 
@@ -15,7 +14,14 @@ export const pageSchema = s.document({
 			title: "Title",
 			description: "Titles should be catchy, descriptive, and not too long"
 		},
-		{ ...createSlugSchema(96) },
+		{
+			name: "slug",
+			type: s.slug({
+				options: {
+					maxLength: 96
+				}
+			})
+		},
 		{
 			name: "image",
 			type: mainImageSchema,
@@ -69,3 +75,5 @@ export const pageSchema = s.document({
 		}
 	]
 });
+
+export type Page = s.infer<typeof pageSchema>;

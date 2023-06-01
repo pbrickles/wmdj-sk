@@ -26,6 +26,6 @@ export const youtubeEmbedSchema = s.objectNamed({
 			optional: true,
 			description: "Optional height value"
 		}
-	],
-	component: YouTubePreview
+	]
+	// component: YouTubePreview
 });

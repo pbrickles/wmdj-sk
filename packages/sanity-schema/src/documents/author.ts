@@ -1,6 +1,4 @@
 import { s } from "@sanity-typed/schema-builder";
-// import { mainImageSchema } from "../objects/mainImage";
-import { createSlugSchema } from "../objects/createSlugSchema";
 import { mainImageSchema } from "../objects/mainImage";
 
 export const authorSchema = s.document({
@@ -11,7 +9,14 @@ export const authorSchema = s.document({
 			name: "name",
 			type: s.string()
 		},
-		{ ...createSlugSchema(56) },
+		{
+			name: "slug",
+			type: s.slug({
+				options: {
+					maxLength: 56
+				}
+			})
+		},
 		{
 			name: "image",
 			type: mainImageSchema
@@ -42,3 +47,5 @@ export const authorSchema = s.document({
 		}
 	}
 });
+
+export type Author = s.infer<typeof authorSchema>;

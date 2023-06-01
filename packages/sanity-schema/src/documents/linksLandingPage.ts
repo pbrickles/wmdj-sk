@@ -1,5 +1,4 @@
 import { s } from "@sanity-typed/schema-builder";
-import { createSlugSchema } from "../objects/createSlugSchema";
 import { linkSchema } from "../objects/link";
 
 export const linksLandingPageSchema = s.document({
@@ -12,7 +11,14 @@ export const linksLandingPageSchema = s.document({
 			title: "Title",
 			description: "Titles should be catchy, descriptive, and not too long"
 		},
-		{ ...createSlugSchema(96) },
+		{
+			name: "slug",
+			type: s.slug({
+				options: {
+					maxLength: 96
+				}
+			})
+		},
 		{
 			name: "publishedAt",
 			type: s.datetime(),
@@ -64,3 +70,5 @@ export const linksLandingPageSchema = s.document({
 		}
 	}
 });
+
+export type LinksLandingPage = s.infer<typeof linksLandingPageSchema>;

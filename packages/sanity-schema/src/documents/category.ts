@@ -16,3 +16,5 @@ export const categorySchema = s.document({
 		}
 	]
 });
+
+export type Category = s.infer<typeof categorySchema>;

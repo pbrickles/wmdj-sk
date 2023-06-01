@@ -1,7 +1,7 @@
 // import { format } from "date-fns";
 
 import { s } from "@sanity-typed/schema-builder";
-import { createSlugSchema } from "../objects/createSlugSchema";
+// import { createSlugSchema } from "../objects/createSlugSchema";
 import { featuredEpisodeSchema } from "../objects/featuredEpisode";
 import { mainImageSchema } from "../objects/mainImage";
 import { excerptPortableTextSchema } from "../objects/excerptPortableText";
@@ -20,7 +20,12 @@ export const postSchema = s.document({
 			description: "Titles should be catchy, descriptive, and not too long"
 		},
 		{
-			...createSlugSchema(96)
+			name: "slug",
+			type: s.slug({
+				options: {
+					maxLength: 96
+				}
+			})
 		},
 		{
 			name: "publishedAt",
@@ -97,3 +102,5 @@ export const postSchema = s.document({
 		}
 	]
 });
+
+export type Post = s.infer<typeof postSchema>;

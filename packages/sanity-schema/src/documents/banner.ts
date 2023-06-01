@@ -1,7 +1,6 @@
 import { s } from "@sanity-typed/schema-builder";
 import { mainImageSchema } from "../objects/mainImage";
 import { linkSchema } from "../objects/link";
-import { createSlugSchema } from "../objects/createSlugSchema";
 
 export const bannerSchema = s.document({
 	name: "banner",
@@ -18,7 +17,14 @@ export const bannerSchema = s.document({
 			title: "Text",
 			description: "The short piece of text to display in the banner"
 		},
-		{ ...createSlugSchema(25) },
+		{
+			name: "slug",
+			type: s.slug({
+				options: {
+					maxLength: 25
+				}
+			})
+		},
 		{
 			name: "bannerImage",
 			type: mainImageSchema,
@@ -39,3 +45,5 @@ export const bannerSchema = s.document({
 		}
 	]
 });
+
+export type Banner = s.infer<typeof bannerSchema>;

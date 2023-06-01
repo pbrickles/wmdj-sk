@@ -23,3 +23,5 @@ export const navigationSchema = s.document({
 		}
 	]
 });
+
+export type Navigation = s.infer<typeof navigationSchema>;

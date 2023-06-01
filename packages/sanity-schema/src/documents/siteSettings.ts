@@ -60,3 +60,5 @@ export const siteSettingsSchema = s.document({
 		}
 	]
 });
+
+export type SiteSettings = s.infer<typeof siteSettingsSchema>;
