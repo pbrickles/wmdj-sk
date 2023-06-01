@@ -1,6 +1,7 @@
 import { s } from "@sanity-typed/schema-builder";
-import { mainImageSchema } from "../objects/mainImage";
+// import { mainImageSchema } from "../objects/mainImage";
 import { createSlugSchema } from "../objects/createSlugSchema";
+import { mainImageSchema } from "../objects/mainImage";
 
 export const authorSchema = s.document({
 	name: "author",
@@ -12,8 +13,8 @@ export const authorSchema = s.document({
 		},
 		{ ...createSlugSchema(56) },
 		{
-			name: "mainImage",
-			type: mainImageSchema.ref()
+			name: "image",
+			type: mainImageSchema
 		},
 		{
 			name: "bio",
@@ -24,6 +25,7 @@ export const authorSchema = s.document({
 			name: "cta",
 			type: s.url(),
 			title: "Find out more link",
+			optional: true,
 			description: "Adds a 'Find out more about me' button"
 		},
 		{

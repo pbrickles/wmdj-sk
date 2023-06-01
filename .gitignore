@@ -35,3 +35,4 @@ yarn-error.log*
 # vercel
 .vercel
 packages/wmdj-utils/tsconfig.tsbuildinfo
+apps/wmdj-studio/localPath.tar.gz

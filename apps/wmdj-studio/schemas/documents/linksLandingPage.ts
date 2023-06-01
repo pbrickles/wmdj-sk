@@ -22,7 +22,7 @@ export const linksLandingPageSchema = s.document({
 		{
 			name: "links",
 			title: "Links",
-			type: s.array({ of: [linkSchema.ref()] })
+			type: s.array({ of: [linkSchema] })
 		}
 	],
 	orderings: [

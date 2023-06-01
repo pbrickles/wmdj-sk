@@ -5,20 +5,25 @@ export const mainImageSchema = s.objectNamed({
 	title: "Image",
 	fields: [
 		{
-			name: "image",
-			type: s.image(),
-			title: "Image Asset"
-		},
-		{
-			name: "caption",
-			type: s.string(),
-			title: "Caption"
-		},
-		{
-			name: "alt",
-			type: s.string(),
-			title: "Alternative text",
-			description: "Important for SEO and accessibility."
+			name: "asset",
+			type: s.image({
+				fields: [
+					{
+						name: "caption",
+						type: s.string(),
+						optional: true
+					},
+					{
+						name: "alt",
+						type: s.string(),
+						title: "Alternative text",
+						description: "Important for SEO and accessibility."
+					}
+				],
+				options: {
+					hotspot: true
+				}
+			})
 		}
 	],
 	preview: {

@@ -1,50 +1,43 @@
-// document schemas
-import author from './documents/author'
-import category from './documents/category'
-import post from './documents/post'
-import page from './documents/page'
-import linksPage from './documents/linksPage'
-import linksLandingPage from './documents/linksLandingPage'
-import siteSettings from './documents/siteSettings'
-import navigation from './documents/navigation'
-import banner from './documents/banner'
-
-// Object types
-import bodyPortableText from './objects/bodyPortableText'
-import bioPortableText from './objects/bioPortableText'
-import excerptPortableText from './objects/excerptPortableText'
-import mainImage from './objects/mainImage'
-import bannerImage from './objects/bannerImage'
-import authorReference from './objects/authorReference'
-import platform from './objects/platform'
-import link from './objects/link'
-import linksSection from './objects/linksSection'
-import navItem from './objects/navItem'
-import instagramPost from './objects/instagramPost'
-import youTubeEmbed from './objects/youTubeEmbed'
-import featuredEpisode from './objects/featuredEpisode'
+import { postSchema } from "./documents/post";
+import { pageSchema } from "./documents/page";
+import { siteSettingsSchema } from "./documents/siteSettings";
+import { bannerSchema } from "./documents/banner";
+import { linksPageSchema } from "./documents/linksPage";
+import { linksLandingPageSchema } from "./documents/linksLandingPage";
+import { categorySchema } from "./documents/category";
+import { authorSchema } from "./documents/author";
+import { mainImageSchema } from "./objects/mainImage";
+import { authorReferenceSchema } from "./objects/authorReference";
+import { bodyPortableTextSchema } from "./objects/bodyPortableText";
+import { excerptPortableTextSchema } from "./objects/excerptPortableText";
+import { bioPortableTextSchema } from "./objects/bioPortableText";
+import { linkSchema } from "./objects/link";
+import { linkSectionSchema } from "./objects/linksSection";
+import { navItemSchema } from "./objects/navItem";
+import { navigationSchema } from "./documents/navigation";
+import { featuredEpisodeSchema } from "./objects/featuredEpisode";
 
 export const schemaTypes = [
-  siteSettings,
-  post,
-  page,
-  banner,
-  linksPage,
-  linksLandingPage,
-  category,
-  author,
-  mainImage,
-  bannerImage,
-  authorReference,
-  bodyPortableText,
-  bioPortableText,
-  excerptPortableText,
-  platform,
-  link,
-  linksSection,
-  instagramPost,
-  youTubeEmbed,
-  navItem,
-  navigation,
-  featuredEpisode,
-]
+	siteSettingsSchema.schema(),
+	postSchema.schema(),
+	pageSchema.schema(),
+	bannerSchema.schema(),
+	linksPageSchema.schema(),
+	linksLandingPageSchema.schema(),
+	categorySchema.schema(),
+	authorSchema.schema(),
+	mainImageSchema.schema(),
+	bannerSchema.schema(),
+	authorReferenceSchema.schema(),
+	bodyPortableTextSchema.schema(),
+	excerptPortableTextSchema.schema(),
+	bioPortableTextSchema.schema(),
+	// platform,
+	linkSchema.schema(),
+	linkSectionSchema.schema(),
+	// instagramPost,
+	// youTubeEmbed,
+	navItemSchema.schema(),
+	navigationSchema.schema(),
+	featuredEpisodeSchema.schema()
+];

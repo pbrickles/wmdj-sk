@@ -30,18 +30,18 @@ export const postSchema = s.document({
 		},
 		{
 			name: "episode",
-			type: featuredEpisodeSchema.ref(),
+			type: featuredEpisodeSchema,
 			title: "Linked Episode",
 			optional: true
 		},
 		{
-			name: "mainImage",
-			type: mainImageSchema.ref(),
+			name: "image",
+			type: mainImageSchema,
 			title: "Main image"
 		},
 		{
 			name: "excerpt",
-			type: excerptPortableTextSchema.ref(),
+			type: excerptPortableTextSchema,
 			title: "Excerpt",
 			optional: true,
 			description:
@@ -51,7 +51,7 @@ export const postSchema = s.document({
 			name: "authors",
 			title: "Authors",
 			optional: true,
-			type: s.array({ of: [authorReferenceSchema.ref()] })
+			type: s.array({ of: [authorReferenceSchema] })
 		},
 		{
 			name: "categories",
@@ -63,7 +63,7 @@ export const postSchema = s.document({
 		},
 		{
 			name: "body",
-			type: bodyPortableTextSchema.ref()
+			type: bodyPortableTextSchema
 		}
 	],
 	orderings: [

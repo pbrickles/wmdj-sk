@@ -13,7 +13,7 @@ export const navigationSchema = s.document({
 		{
 			name: "items",
 			type: s.array({
-				of: [navItemSchema.ref()]
+				of: [navItemSchema]
 			}),
 			title: "Nav Items",
 			description: "Add nav items",

@@ -21,22 +21,22 @@ export const bodyTextBlockSchema = s.block({
 		decorators: [
 			{ title: "Strong", value: "strong" },
 			{ title: "Emphasis", value: "em" }
-		],
-		// Annotations can be any object structure - e.g. a link or a footnote.
-		annotations: [
-			{
-				name: "link",
-				type: "object",
-				title: "URL",
-				fields: [
-					{
-						title: "URL",
-						name: "href",
-						type: "url"
-					}
-				]
-			}
 		]
+		// Annotations can be any object structure - e.g. a link or a footnote.
+		// annotations: [
+		// 	{
+		// 		name: "link",
+		// 		type: "object",
+		// 		title: "URL",
+		// 		fields: [
+		// 			{
+		// 				title: "URL",
+		// 				name: "href",
+		// 				type: "url"
+		// 			}
+		// 		]
+		// 	}
+		// ]
 	}
 });
 
@@ -49,9 +49,8 @@ export const bodyPortableTextSchema = s.objectNamed({
 			type: s.array({
 				of: [
 					bodyTextBlockSchema,
-					mainImageSchema.ref(),
-					authorReferenceSchema.ref()
-					// { type: "instagramPost" },
+					mainImageSchema,
+					authorReferenceSchema
 					// { type: "youTubeEmbed" }
 				]
 			})

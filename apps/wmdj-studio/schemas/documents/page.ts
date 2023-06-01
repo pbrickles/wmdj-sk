@@ -17,8 +17,8 @@ export const pageSchema = s.document({
 		},
 		{ ...createSlugSchema(96) },
 		{
-			name: "mainImage",
-			type: mainImageSchema.ref(),
+			name: "image",
+			type: mainImageSchema,
 			title: "Main image"
 		},
 		{

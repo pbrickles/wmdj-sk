@@ -20,8 +20,8 @@ export const linksPageSchema = s.document({
 			...createSlugSchema(96)
 		},
 		{
-			name: "mainImage",
-			type: mainImageSchema.ref()
+			name: "image",
+			type: mainImageSchema
 		},
 		{
 			name: "publishedAt",
@@ -38,7 +38,7 @@ export const linksPageSchema = s.document({
 			name: "links",
 			title: "Links",
 			type: s.array({
-				of: [linkSectionSchema.ref()]
+				of: [linkSectionSchema]
 			})
 		}
 	],

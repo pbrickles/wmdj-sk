@@ -21,12 +21,12 @@ export const bannerSchema = s.document({
 		{ ...createSlugSchema(25) },
 		{
 			name: "bannerImage",
-			type: mainImageSchema.ref(),
+			type: mainImageSchema,
 			title: "Image"
 		},
 		{
 			name: "ctas",
-			type: s.array({ of: [linkSchema.ref()] }),
+			type: s.array({ of: [linkSchema] }),
 			title: "CTAs",
 			description: "Add CTAs",
 			optional: true
