@@ -6,7 +6,9 @@ export async function load({ fetch, params }) {
 	const res = await fetchEpisodes(fetch);
 	if (res.ok) {
 		const { data }: TransistorEpisodesResults = await res.json();
-		const episode = data.find((episode) => episode.attributes.slug === params.slug);
+		const episode = data.find(
+			({ attributes }) => attributes.slug === params.slug && attributes.status === "published"
+		);
 		if (episode) {
 			return {
 				status: 200,

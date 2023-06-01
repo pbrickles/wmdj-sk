@@ -7,10 +7,11 @@ export async function load({ fetch }) {
 	if (res.ok) {
 		const { data }: TransistorEpisodesResults = await res.json();
 		if (data) {
+			const episodes = data.filter((episode) => episode.attributes.status === "published");
 			return {
 				status: 200,
 				body: {
-					episodes: data
+					episodes
 				}
 			};
 		}
