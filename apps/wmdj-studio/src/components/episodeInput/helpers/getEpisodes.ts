@@ -18,6 +18,5 @@ export const getEpisodes = async () => {
 		}
 	);
 	const { data }: { data: TransistorEpisodeInterface[] } = await response.json();
-	console.log({ data });
 	return data;
 };

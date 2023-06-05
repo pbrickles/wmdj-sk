@@ -1,9 +1,8 @@
-import type { PageServerLoad } from "./$types";
 import { fetchEpisodes } from "$lib/data/helpers/fetchEpisodes.js";
 import type { TransistorEpisodesResults } from "$lib/types";
 import { error } from "@sveltejs/kit";
 
-export const load: PageServerLoad = async ({ fetch }) => {
+export async function load({ fetch }) {
 	const res = await fetchEpisodes(fetch);
 
 	if (res.ok) {
@@ -25,4 +24,4 @@ export const load: PageServerLoad = async ({ fetch }) => {
 	}
 
 	throw error(404, "Episodes not found");
-};
+}

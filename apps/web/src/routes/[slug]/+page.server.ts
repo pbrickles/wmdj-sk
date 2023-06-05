@@ -2,7 +2,6 @@ import { fetchPageBySlug } from "$lib/data/helpers/fetchPages";
 import { error } from "@sveltejs/kit";
 
 export async function load({ params }) {
-	console.log(params);
 	try {
 		const page = await fetchPageBySlug(params.slug);
 		if (!page) {

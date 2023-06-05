@@ -9,7 +9,7 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"types": ["node", "@sveltejs/kit", "vite/client", "vitest/globals"]
+		"types": ["@sveltejs/kit", "vite/client", "vitest/globals"]
 	}
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias
 	//

@@ -1,9 +1,8 @@
 <script lang="ts">
 	import AudioPlayer from "../../../lib/components/AudioPlayer/AudioPlayer.svelte";
 	export let data;
-	let {
-		body: { episode }
-	} = data;
+
+	$: episode = data.body.episode;
 </script>
 
 <h1>{episode.attributes.title}</h1>
