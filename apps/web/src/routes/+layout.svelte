@@ -1,24 +1,8 @@
 <script lang="ts">
 	export let data;
-	let {
-		body: { mainNav, footerNav }
-	} = data;
+	let { body, HeaderNavComponent, FooterNavComponent } = data;
 </script>
 
-<nav>
-	<ul>
-		{#each mainNav.items as navItem}
-			<li>
-				<a href={`${navItem.path}/`}>{navItem.label}</a>
-			</li>
-		{/each}
-	</ul>
-</nav>
+<HeaderNavComponent mainNav={body.mainNav} />
 <slot />
-<footer>
-	{#each footerNav.items as navItem}
-		<li>
-			<a href={`${navItem.path}/`}>{navItem.label}</a>
-		</li>
-	{/each}
-</footer>
+<FooterNavComponent footerNav={body.footerNav} />

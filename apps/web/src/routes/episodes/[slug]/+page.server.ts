@@ -1,4 +1,4 @@
-import { fetchEpisodes } from "$lib/server/helpers/fetchEpisodes.js";
+import { fetchEpisodes } from "$lib/data/helpers/fetchEpisodes.js";
 import type { TransistorEpisodesResults } from "$lib/types/transistor.js";
 import { error } from "@sveltejs/kit";
 

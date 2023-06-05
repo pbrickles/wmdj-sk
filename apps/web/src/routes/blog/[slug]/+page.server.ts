@@ -1,4 +1,4 @@
-import { fetchPostBySlug } from "$lib/server/helpers/fetchPosts";
+import { fetchPostBySlug } from "$lib/data/helpers/fetchPosts";
 import { error } from "@sveltejs/kit";
 
 export async function load({ params }) {

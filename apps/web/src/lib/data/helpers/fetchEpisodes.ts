@@ -1,5 +1,5 @@
-import type { PageServerLoadEvent } from "../../../routes/$types";
 import { TRANSISTOR_SHOW_ID, TRANSISTOR_API_KEY } from "$env/static/private";
+import type { PageServerLoadEvent } from "../../../routes/episodes/[slug]/$types";
 
 export const fetchEpisodes = async (fetch: PageServerLoadEvent["fetch"]) => {
 	const headers = {
