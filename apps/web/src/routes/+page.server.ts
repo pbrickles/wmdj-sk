@@ -1,6 +1,6 @@
 import type { PageServerLoad } from "./$types";
 import { fetchEpisodes } from "$lib/data/helpers/fetchEpisodes.js";
-import type { TransistorEpisodesResults } from "$lib/types/transistor.js";
+import type { TransistorEpisodesResults } from "$lib/types";
 import { error } from "@sveltejs/kit";
 
 export const load: PageServerLoad = async ({ fetch }) => {

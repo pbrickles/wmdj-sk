@@ -2,6 +2,7 @@ import { client } from "../sanity";
 import type { Navigation } from "sanity-schema";
 
 export async function fetchNavigation(navType: "main" | "footer") {
+	console.log("fetchNavigation", navType);
 	const navTypeMap = {
 		main: "Main Nav",
 		footer: "Footer Nav"

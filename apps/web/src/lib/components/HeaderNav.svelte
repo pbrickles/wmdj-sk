@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { Navigation } from "sanity-schema";
-	export let mainNav: Navigation;
+	export let nav: Navigation;
 </script>
 
-<nav>
+<nav data-sveltekit-preload-data>
 	<ul>
-		{#each mainNav.items as navItem}
+		{#each nav.items as navItem}
 			<li>
 				<a href={navItem.path}>{navItem.label}</a>
 			</li>

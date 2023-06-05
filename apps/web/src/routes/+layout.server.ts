@@ -1,8 +1,7 @@
 import { fetchNavigation } from "$lib/data/helpers/fetchNavigation";
 import { fetchPageBySlug } from "$lib/data/helpers/fetchPages";
-import type { PageServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ params }) => {
+export async function load({ params }) {
 	const mainNav = await fetchNavigation("main");
 	const footerNav = await fetchNavigation("footer");
 	const page = await fetchPageBySlug(params.slug);
@@ -15,4 +14,4 @@ export const load: PageServerLoad = async ({ params }) => {
 			page
 		}
 	};
-};
+}

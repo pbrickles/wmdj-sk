@@ -1,10 +1,13 @@
 import { fetchPageBySlug } from "$lib/data/helpers/fetchPages";
-import type { PageServerLoad } from "./$types";
 import { error } from "@sveltejs/kit";
 
-export const load: PageServerLoad = async () => {
+export async function load({ params }) {
+	console.log(params);
 	try {
-		const page = await fetchPageBySlug("about");
+		const page = await fetchPageBySlug(params.slug);
+		if (!page) {
+			throw error(404, "Page not found");
+		}
 		return {
 			status: 200,
 			body: {
@@ -15,4 +18,4 @@ export const load: PageServerLoad = async () => {
 		console.error(e);
 		throw error(500, "Server error");
 	}
-};
+}
