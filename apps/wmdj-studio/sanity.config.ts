@@ -11,7 +11,8 @@ import {
 	linksLandingPageSchema,
 	linksPageSchema,
 	navigationSchema,
-	pageSchema
+	pageSchema,
+	transcriptSchema
 } from "sanity-schema";
 
 const sanityConfig = getSanityConfig();
@@ -31,7 +32,8 @@ export default defineConfig({
 			linksLandingPageSchema.schema(),
 			linksPageSchema.schema(),
 			navigationSchema.schema(),
-			pageSchema.schema()
+			pageSchema.schema(),
+			transcriptSchema.schema()
 		]
 	}
 });
