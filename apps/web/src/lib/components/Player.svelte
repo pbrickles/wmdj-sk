@@ -15,14 +15,14 @@
 		player.controlPlaying.pause();
 	}
 
-	function update_meta() {
+	function updateMeta() {
 		if (audio) {
 			duration = audio.duration;
 			currentTime = audio.currentTime;
 		}
 	}
 
-	function time_update() {
+	function timeUpdate() {
 		if (audio) {
 			currentTime = audio.currentTime;
 		}
@@ -32,8 +32,8 @@
 <audio
 	bind:this={audio}
 	src={$player.currentShow?.attributes.media_url}
-	on:loadedmetadata={update_meta}
-	on:timeupdate={time_update}
+	on:loadedmetadata={updateMeta}
+	on:timeupdate={timeUpdate}
 />
 
 {#if $player.status === "ACTIVE" && $player.currentShow}
