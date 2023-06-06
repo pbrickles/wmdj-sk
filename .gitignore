@@ -36,3 +36,7 @@ yarn-error.log*
 .vercel
 packages/wmdj-utils/tsconfig.tsbuildinfo
 apps/wmdj-studio/localPath.tar.gz
+
+# vscode
+.vscode/*
+.vscode/settings.json
