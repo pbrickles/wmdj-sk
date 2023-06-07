@@ -30,3 +30,5 @@ export const transcriptSchema = s.document({
 		{ name: "createTranscriptPage", type: s.boolean(), default: false }
 	]
 });
+
+export type Transcript = s.infer<typeof transcriptSchema>;
