@@ -27,6 +27,10 @@
 			currentTime = audio.currentTime;
 		}
 	}
+
+	player.subscribe((state) => {
+		console.log(state);
+	});
 </script>
 
 <audio
@@ -55,47 +59,3 @@
 		</div>
 	</section>
 {/if}
-
-<style>
-	p {
-		margin: 0;
-	}
-
-	.player {
-		padding: 20px;
-		position: fixed;
-		bottom: 0;
-		width: 100vw;
-		height: 150px;
-		color: var(--color);
-		background-color: var(--player-bg, var(--blackish));
-		border-top: 3px var(--primary) solid;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		gap: 10px;
-	}
-
-	.player-button {
-		background: linear-gradient(to right, var(--green), var(--teal));
-		border-radius: 50%;
-		padding: 10px;
-	}
-
-	.progress-bar {
-		display: flex;
-		justify-content: center;
-		gap: 20px;
-		align-items: center;
-	}
-
-	progress {
-		border-radius: 0;
-		width: 60vw;
-	}
-
-	progress[value]::-webkit-progress-value {
-		background: linear-gradient(to right, var(--green), var(--teal));
-	}
-</style>

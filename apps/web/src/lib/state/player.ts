@@ -1,5 +1,5 @@
 import type { TransistorEpisode } from "$lib/types";
-import { getEpisodeById } from "$lib/utils/getEpisodeById";
+import { getEpisodeById } from "$lib/data/helpers/getEpisodeById";
 import { writable } from "svelte/store";
 
 const playerState = () => {
@@ -7,13 +7,13 @@ const playerState = () => {
 		status: "HIDDEN" | "ACTIVE" | "EXPANDED";
 		currentShow: TransistorEpisode | null;
 		playing: boolean;
-		audio?: HTMLAudioElement;
+		audio: HTMLAudioElement;
 		episodes: TransistorEpisode[];
 	}>({
 		status: "HIDDEN",
 		currentShow: null,
 		playing: false,
-		audio: undefined,
+		audio: new Audio(),
 		episodes: []
 	});
 
@@ -26,6 +26,7 @@ const playerState = () => {
 
 	function playEpisode(episodeId: string) {
 		update((state) => {
+			state.audio?.play();
 			state.status = "ACTIVE";
 			state.currentShow = state.episodes ? getEpisodeById(episodeId, state.episodes) : null;
 			return state;

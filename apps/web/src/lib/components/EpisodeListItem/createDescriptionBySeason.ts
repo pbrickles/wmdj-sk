@@ -1,4 +1,4 @@
-import { truncateText } from "$lib/helpers/truncateText";
+import { truncateText } from "$lib/utils/truncateText";
 import type { TransistorEpisodeAttributes } from "$lib/types/transistor";
 
 const trimEncodedContent = (contentToTrim: string) => {
