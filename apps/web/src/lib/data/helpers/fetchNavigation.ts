@@ -1,7 +1,9 @@
 import { client } from "../sanity";
 import type { Navigation } from "sanity-schema";
 
-export async function fetchNavigation(navType: "main" | "footer") {
+export type NavType = "main" | "footer";
+
+export async function fetchNavigation(navType: NavType) {
 	const navTypeMap = {
 		main: "Main Nav",
 		footer: "Footer Nav"

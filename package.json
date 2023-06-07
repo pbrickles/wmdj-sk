@@ -5,6 +5,8 @@
 		"build": "turbo run build",
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
+		"test": "turbo run test",
+		"test:unit": "turbo run test:unit",
 		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
 		"prettier": "prettier --write \"**/*.{ts,tsx,md,svelte,js,json,yaml}\"",
 		"prettier-check": "prettier --plugin-search-dir . --check ."

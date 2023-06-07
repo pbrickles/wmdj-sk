@@ -1,5 +1,6 @@
-import { getPublishedEpisodeBySlug } from "$lib/data/helpers/fetchEpisodes.js";
-import { fetchTranscripts, getTranscript } from "$lib/data/helpers/fetchTranscripts.js";
+import { fetchTranscripts } from "$lib/data/helpers/fetchTranscripts";
+import { getPublishedEpisodeBySlug } from "$lib/data/helpers/getPublishedEpisodeBySlug";
+import { getTranscript } from "$lib/data/helpers/getTranscript";
 import { error } from "@sveltejs/kit";
 export async function load({ params, parent }) {
 	const parentData = await parent();
