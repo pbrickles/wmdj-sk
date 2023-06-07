@@ -18,6 +18,7 @@
 		"@portabletext/svelte": "^2.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/kit": "^1.5.0",
+		"@types/lodash": "^4.14.195",
 		"eslint": "^7.32.0",
 		"eslint-config-custom": "workspace:^",
 		"jsdom": "^22.0.0",
@@ -33,6 +34,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@sanity/client": "^6.1.2"
+		"@sanity/client": "^6.1.2",
+		"lodash": "^4.17.21"
 	}
 }
