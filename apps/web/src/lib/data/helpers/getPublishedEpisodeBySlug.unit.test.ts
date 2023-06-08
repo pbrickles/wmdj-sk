@@ -1,4 +1,4 @@
-import { createEpisodeMock } from "$lib/test-utils/createEpisodeMock";
+import { createEpisodeMock } from "$lib/test-utils/mocks/createEpisodeMock";
 import { getPublishedEpisodeBySlug } from "./getPublishedEpisodeBySlug";
 
 describe("getPublishedEpisodeBySlug", () => {

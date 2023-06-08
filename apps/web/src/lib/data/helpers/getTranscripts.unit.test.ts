@@ -1,4 +1,4 @@
-import { createTranscriptMock } from "$lib/test-utils/createTranscriptMock";
+import { createTranscriptMock } from "$lib/test-utils/mocks";
 import { getTranscript } from "./getTranscript";
 
 describe("getTranscript", () => {

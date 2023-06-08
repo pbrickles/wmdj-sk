@@ -1,11 +1,10 @@
 <script lang="ts">
-	import { player } from "$lib/state/player";
+	import { player } from "$lib/state/Player/player.js";
 	import FooterNav from "$lib/components/FooterNav.svelte";
 	import HeaderNav from "$lib/components/HeaderNav.svelte";
 
 	export let data;
-
-	player.setEpisodes(data.body.episodes);
+	player.episodes.all.setEpisodes(data.body.episodes);
 </script>
 
 <HeaderNav nav={data.body.mainNav} />

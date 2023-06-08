@@ -1,12 +1,13 @@
 <script lang="ts">
-	import { player } from "$lib/state/player";
+	import { player } from "$lib/state/Player/player";
 	import type { TransistorEpisode } from "$lib/types/transistor";
 	import { createDescriptionBySeason } from "./createDescriptionBySeason";
 
 	export let episode: TransistorEpisode;
 	const { attributes } = episode;
 	const playEpisode = () => {
-		player.playEpisode(episode.id);
+		player.episodes.current.setCurrentEpisode(episode.id);
+		player.controlPlaying.play();
 	};
 </script>
 

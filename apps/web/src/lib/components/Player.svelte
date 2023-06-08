@@ -1,17 +1,20 @@
 <script lang="ts">
-	import { player } from "$lib/state/player";
+	import { player } from "$lib/state/Player/player";
 	import { formatTime } from "$lib/utils/formatTime";
+	import { onMount } from "svelte";
 
-	let audio: HTMLAudioElement | undefined;
+	let audio: HTMLAudioElement;
 	let duration = 0;
 	let currentTime = 0;
 
+	onMount(() => {
+		player.setAudioElement(audio);
+	});
+
 	function play() {
-		audio?.play();
 		player.controlPlaying.play();
 	}
 	function pause() {
-		audio?.pause();
 		player.controlPlaying.pause();
 	}
 
@@ -27,26 +30,31 @@
 			currentTime = audio.currentTime;
 		}
 	}
-
-	player.subscribe((state) => {
-		console.log(state);
-	});
 </script>
 
 <audio
 	bind:this={audio}
-	src={$player.currentShow?.attributes.media_url}
+	src={$player.currentEpisode?.attributes.media_url}
+	on:loadstart={(e) => player.controlPlaying.setLoadingState(true)}
 	on:loadedmetadata={updateMeta}
 	on:timeupdate={timeUpdate}
+	on:loadeddata={(e) => play()}
+	on:canplay={(e) => player.controlPlaying.setLoadingState(false)}
 />
 
-{#if $player.status === "ACTIVE" && $player.currentShow}
+{#if $player.status === "ACTIVE" && $player.currentEpisode}
 	<section class="player">
-		<p>{$player.currentShow.attributes.title}</p>
+		<p>{$player.currentEpisode.attributes.title}</p>
 
 		<div>
 			{#if $player.playing}
-				<button class="player-button" on:click={pause}>Pause</button>
+				<button class="player-button" on:click={pause}>
+					{#if $player.loading}
+						Loading...
+					{:else}
+						Pause
+					{/if}
+				</button>
 			{:else}
 				<button class="player-button pause" on:click={play}>Play</button>
 			{/if}
