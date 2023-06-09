@@ -3,12 +3,6 @@ import { audioMock, createPlayerStateMock } from "$lib/test-utils/mocks";
 import { setPlayState } from "./setPlayState";
 
 describe("setPlayState", () => {
-	describe("GIVEN no direction", () => {
-		it("SHOULD return the state unchanged", () => {
-			const state = createPlayerStateMock();
-			expect(setPlayState(state)).toEqual(state);
-		});
-	});
 	describe("GIVEN a PAUSE direction", () => {
 		describe("AND no audio element", () => {
 			it("SHOULD return the state unchanged", () => {
@@ -40,6 +34,15 @@ describe("setPlayState", () => {
 				const { playing } = setPlayState(state, "PLAY");
 				expect(audioMock.play).toHaveBeenCalled();
 				expect(playing).toBe(true);
+			});
+
+			describe("AND the status is 'HIDDEN'", () => {
+				it("SHOULD set the status to 'ACTIVE'", () => {
+					const state = createPlayerStateMock({ status: "HIDDEN" });
+					state.audio = audioMock;
+					const { status } = setPlayState(state, "PLAY");
+					expect(status).toBe("ACTIVE");
+				});
 			});
 		});
 	});

@@ -20,16 +20,18 @@ describe("setCurrentEpisode", () => {
 				const newState = setCurrentEpisodeState(playerStore, episodeId);
 				expect(newState.currentEpisode).toEqual(episode);
 			});
-			it("SHOULD set the status to ACTIVE", () => {
+		});
+		describe("AND the current episode is already set", () => {
+			it("SHOULD return the state unchanged", () => {
 				const episodeId = "testId123";
 				const episode = createEpisodeMock({ id: episodeId });
 				const episodes = [createEpisodeMock(), episode];
 				const playerStore = createPlayerStateMock({
 					episodes,
-					status: "HIDDEN"
+					currentEpisode: episode
 				});
 				const newState = setCurrentEpisodeState(playerStore, episodeId);
-				expect(newState.status).toEqual("ACTIVE");
+				expect(newState).toEqual(playerStore);
 			});
 		});
 
@@ -42,18 +44,6 @@ describe("setCurrentEpisode", () => {
 					episodes
 				});
 				const newState = setCurrentEpisodeState(playerStore, "notRealId");
-				expect(newState.currentEpisode).toEqual(null);
-			});
-		});
-		describe("AND an episodeId that is undefined", () => {
-			it("SHOULD not set the current episode", () => {
-				const episodeId = "testId123";
-				const episode = createEpisodeMock({ id: episodeId });
-				const episodes = [createEpisodeMock(), episode];
-				const playerStore = createPlayerStateMock({
-					episodes
-				});
-				const newState = setCurrentEpisodeState(playerStore, undefined);
 				expect(newState.currentEpisode).toEqual(null);
 			});
 		});

@@ -2,10 +2,11 @@ import { getEpisodeById } from "$lib/data/helpers/getEpisodeById";
 import type { PlayerHelperFunction } from "./types";
 
 export const setCurrentEpisodeState: PlayerHelperFunction<string> = (state, episodeId) => {
-	if (!episodeId) {
+	if (!episodeId || episodeId === state.currentEpisode?.id) {
 		return state;
 	}
-	const status = state.episodes.length ? "ACTIVE" : state.status;
-	const currentEpisode = state.episodes ? getEpisodeById(episodeId, state.episodes) : null;
-	return { ...state, currentEpisode, status };
+	return {
+		...state,
+		currentEpisode: state.episodes ? getEpisodeById(episodeId, state.episodes) : null
+	};
 };

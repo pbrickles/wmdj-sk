@@ -12,10 +12,10 @@
 	});
 
 	function play() {
-		player.controlPlaying.play();
+		player.play();
 	}
 	function pause() {
-		player.controlPlaying.pause();
+		player.pause();
 	}
 
 	function updateMeta() {
@@ -35,11 +35,11 @@
 <audio
 	bind:this={audio}
 	src={$player.currentEpisode?.attributes.media_url}
-	on:loadstart={(e) => player.controlPlaying.setLoadingState(true)}
+	on:loadstart={(e) => player.setLoadingState(true)}
 	on:loadedmetadata={updateMeta}
 	on:timeupdate={timeUpdate}
 	on:loadeddata={(e) => play()}
-	on:canplay={(e) => player.controlPlaying.setLoadingState(false)}
+	on:canplay={(e) => player.setLoadingState(false)}
 />
 
 {#if $player.status === "ACTIVE" && $player.currentEpisode}

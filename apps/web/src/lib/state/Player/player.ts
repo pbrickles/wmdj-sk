@@ -1,9 +1,13 @@
 import type { TransistorEpisode } from "$lib/types";
 import { writable } from "svelte/store";
-import { setEpisodeState } from "./helpers/setEpisodeState";
-import { setCurrentEpisodeState } from "./helpers/setCurrentEpisodeState";
-import { setPlayState } from "./helpers/setPlayState";
-import { setLoadingState as handleLoadingState } from "./helpers/setLoadingState";
+import {
+	setEpisodeState,
+	setPlayState,
+	setLoadingState as handleLoadingState,
+	setAudioElementState,
+	setCurrentEpisodeState,
+	handleEpisodePlay
+} from "./helpers";
 
 export type PlayerState = {
 	status: "HIDDEN" | "ACTIVE" | "EXPANDED";
@@ -33,6 +37,10 @@ const playerState = () => {
 		update((state) => setCurrentEpisodeState(state, episodeId));
 	}
 
+	function episodePlay(episodeId: string) {
+		update((state) => handleEpisodePlay(state, episodeId));
+	}
+
 	function play() {
 		update((state) => setPlayState(state, "PLAY"));
 	}
@@ -45,34 +53,24 @@ const playerState = () => {
 	}
 
 	function setAudioElement(audio: HTMLAudioElement) {
-		update((state) => {
-			state.audio = audio;
-			return state;
-		});
+		update((state) => setAudioElementState(state, audio));
 	}
 
 	function reset() {
-		set({ ...initialState, episodes: [] });
+		set({ ...initialState });
 	}
 
 	return {
 		subscribe,
 		update,
 		reset,
-		episodes: {
-			all: {
-				setEpisodes
-			},
-			current: {
-				setCurrentEpisode
-			}
-		},
+		setEpisodes,
+		setCurrentEpisode,
 		setAudioElement,
-		controlPlaying: {
-			play,
-			pause,
-			setLoadingState
-		}
+		play,
+		pause,
+		setLoadingState,
+		episodePlay
 	};
 };
 
