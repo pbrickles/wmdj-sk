@@ -6,7 +6,6 @@ export const setPlayState: PlayerHelperFunction<"PLAY" | "PAUSE"> = (state, dire
 	}
 
 	direction === "PAUSE" ? state.audio?.pause() : state.audio?.play();
-
 	return {
 		...state,
 		playing: direction === "PLAY",

@@ -70,6 +70,16 @@ describe("player store", () => {
 				method: player.episodePlay,
 				args: createEpisodeMock().id,
 				helper: "handleEpisodePlay"
+			},
+			{
+				method: player.setExpanded,
+				args: true,
+				helper: "setExpandedStatus"
+			},
+			{
+				method: player.setExpanded,
+				args: false,
+				helper: "setExpandedStatus"
 			}
 		];
 		describe.each(scenarios)("WHEN the $method method is fired", ({ method, args, helper }) => {

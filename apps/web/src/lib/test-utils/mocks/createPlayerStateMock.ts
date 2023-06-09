@@ -7,6 +7,7 @@ type MockFunction<T> = (data?: DeepPartial<T>) => T;
 export const createPlayerStateMock: MockFunction<PlayerState> = (data) => {
 	const playerState: PlayerState = {
 		status: "HIDDEN",
+		expanded: false,
 		currentEpisode: null,
 		playing: false,
 		loading: false,

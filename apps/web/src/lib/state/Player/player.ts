@@ -6,11 +6,13 @@ import {
 	setLoadingState as handleLoadingState,
 	setAudioElementState,
 	setCurrentEpisodeState,
-	handleEpisodePlay
+	handleEpisodePlay,
+	setExpandedStatus
 } from "./helpers";
 
 export type PlayerState = {
-	status: "HIDDEN" | "ACTIVE" | "EXPANDED";
+	status: "HIDDEN" | "ACTIVE";
+	expanded: boolean;
 	currentEpisode: TransistorEpisode | null;
 	playing: boolean;
 	loading: boolean;
@@ -25,6 +27,7 @@ const playerState = () => {
 		playing: false,
 		loading: false,
 		audio: undefined,
+		expanded: false,
 		episodes: []
 	};
 	const { subscribe, update, set } = writable<PlayerState>(initialState);
@@ -56,6 +59,10 @@ const playerState = () => {
 		update((state) => setAudioElementState(state, audio));
 	}
 
+	function setExpanded(expand: boolean) {
+		update((state) => setExpandedStatus(state, expand));
+	}
+
 	function reset() {
 		set({ ...initialState });
 	}
@@ -67,6 +74,7 @@ const playerState = () => {
 		setEpisodes,
 		setCurrentEpisode,
 		setAudioElement,
+		setExpanded,
 		play,
 		pause,
 		setLoadingState,

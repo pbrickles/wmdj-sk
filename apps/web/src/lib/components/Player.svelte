@@ -2,20 +2,24 @@
 	import { player } from "$lib/state/Player/player";
 	import { formatTime } from "$lib/utils/formatTime";
 	import { onMount } from "svelte";
+	import PlayButton from "./PlayButton.svelte";
+	import type { TransistorEpisode } from "$lib/types";
 
+	export let isInline = false;
+	export let episode: TransistorEpisode | null = null;
 	let audio: HTMLAudioElement;
 	let duration = 0;
 	let currentTime = 0;
+	const handlePlay = () =>
+		player.episodePlay(isInline && episode ? episode.id : $player.currentEpisode?.id ?? "");
 
 	onMount(() => {
 		player.setAudioElement(audio);
+		player.setExpanded(isInline);
 	});
 
 	function play() {
 		player.play();
-	}
-	function pause() {
-		player.pause();
 	}
 
 	function updateMeta() {
@@ -42,23 +46,16 @@
 	on:canplay={(e) => player.setLoadingState(false)}
 />
 
-{#if $player.status === "ACTIVE" && $player.currentEpisode}
+{#if ($player.status === "ACTIVE" && !$player.expanded) || $player.expanded}
 	<section class="player">
-		<p>{$player.currentEpisode.attributes.title}</p>
+		<p>{$player?.currentEpisode?.attributes.title ?? ""}</p>
 
-		<div>
-			{#if $player.playing}
-				<button class="player-button" on:click={pause}>
-					{#if $player.loading}
-						Loading...
-					{:else}
-						Pause
-					{/if}
-				</button>
-			{:else}
-				<button class="player-button pause" on:click={play}>Play</button>
-			{/if}
-		</div>
+		<PlayButton
+			playing={$player.playing}
+			loading={$player.loading}
+			clickHandler={handlePlay}
+			isCurrentEpisode
+		/>
 
 		<div class="progress-bar">
 			{formatTime(currentTime)}
