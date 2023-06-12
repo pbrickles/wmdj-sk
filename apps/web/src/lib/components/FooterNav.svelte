@@ -1,18 +1,15 @@
 <script lang="ts">
 	import type { Navigation } from "sanity-schema";
 	import { player } from "$lib/state/Player/player";
-	import Player from "./Player.svelte";
+	import PlayerControls from "./PlayerControls.svelte";
 	import Audio from "./Audio.svelte";
 	export let nav: Navigation;
-	{
-		console.log($player);
-	}
 </script>
 
 <footer>
-	{#if !$player.expanded && $player.currentEpisode}
-		<Audio />
-		<Player episode={$player.currentEpisode} />
+	<Audio />
+	{#if $player.currentEpisode}
+		<PlayerControls episode={$player.currentEpisode} isVisible={!$player.expanded} />
 	{/if}
 	<nav>
 		{#each nav.items as navItem}

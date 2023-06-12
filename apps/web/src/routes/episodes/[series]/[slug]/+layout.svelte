@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import Player from "$lib/components/Player.svelte";
+	import PlayerControls from "$lib/components/PlayerControls.svelte";
 	import { player } from "$lib/state/Player/player.js";
+	import { onMount } from "svelte";
 	export let data;
 	$: episode = data.body.episode;
 	$: transcript = data.body.episodeTranscript;
-	const handlePlaying = () => player.episodePlay(episode.id);
+	onMount(() => {
+		player.setExpanded(true);
+	});
 </script>
 
 <h1>{episode.attributes.title}</h1>
-<!-- This probably needs a rethink now 👇 -->
-<Player {episode} />
+<PlayerControls {episode} />
 {#if transcript}
 	<!-- These will become tabs 👇-->
 	<nav>

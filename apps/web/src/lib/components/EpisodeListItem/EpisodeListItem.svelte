@@ -7,7 +7,7 @@
 	export let episode: TransistorEpisode;
 	const { attributes } = episode;
 	const handlePlaying = () => player.episodePlay(episode.id);
-	const slug = `/episodes/${attributes.slug}`;
+	const slug = `/episodes/series-${attributes.season}/${attributes.slug}`;
 </script>
 
 <div>

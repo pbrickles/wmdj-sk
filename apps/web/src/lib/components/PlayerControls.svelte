@@ -6,7 +6,6 @@
 
 	export let isVisible = true;
 	export let episode: TransistorEpisode;
-	let duration = 0;
 	let currentTime = 0;
 	const handlePlay = () => player.episodePlay(episode.id);
 </script>
@@ -24,8 +23,8 @@
 
 		<div class="progress-bar">
 			{formatTime(currentTime)}
-			<progress max={duration} value={currentTime} />
-			{formatTime($player.audio.duration)}
+			<progress max={episode.attributes.duration} value={currentTime} />
+			{formatTime(episode.attributes.duration)}
 		</div>
 	</section>
 {/if}
