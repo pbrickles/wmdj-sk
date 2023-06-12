@@ -10,7 +10,7 @@
 
 <h1>{episode.attributes.title}</h1>
 <!-- This probably needs a rethink now 👇 -->
-<Player isInline />
+<Player {episode} />
 {#if transcript}
 	<!-- These will become tabs 👇-->
 	<nav>

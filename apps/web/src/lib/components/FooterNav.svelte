@@ -2,6 +2,7 @@
 	import type { Navigation } from "sanity-schema";
 	import { player } from "$lib/state/Player/player";
 	import Player from "./Player.svelte";
+	import Audio from "./Audio.svelte";
 	export let nav: Navigation;
 	{
 		console.log($player);
@@ -10,7 +11,8 @@
 
 <footer>
 	{#if !$player.expanded && $player.currentEpisode}
-		<Player />
+		<Audio />
+		<Player episode={$player.currentEpisode} />
 	{/if}
 	<nav>
 		{#each nav.items as navItem}
