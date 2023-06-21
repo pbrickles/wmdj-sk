@@ -1,33 +1,29 @@
-import { s } from "@sanity-typed/schema-builder";
 // import YouTubePreview from "../../src/previews/youtube/youTubeEmbed";
+import { defineField, defineType } from "@sanity-typed/types";
 
-export const youtubeEmbedSchema = s.objectNamed({
+export const youtubeEmbedSchema = defineType({
 	name: "youTubeEmbed",
+	type: "object",
 	fields: [
-		{
+		defineField({
 			name: "url",
-			type: s.url(),
+			type: "url",
 			title: "Url",
-			description: "Paste the url of the YouTube video from your browser"
-		},
-		{
+			description: "Paste the url of the YouTube video from your browser",
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
 			name: "width",
-			type: s.number({
-				initialValue: 640
-			}),
-			description: "Optional width value",
-			optional: true
-		},
-		{
+			type: "number",
+			initialValue: 640,
+			description: "Optional width value"
+		}),
+		defineField({
 			name: "height",
-			type: s.number({
-				initialValue: 390
-			}),
-			optional: true,
+			type: "number",
+			initialValue: 390,
 			description: "Optional height value"
-		}
+		})
 	]
 	// component: YouTubePreview
 });
-
-export type YouTubeEmbed = s.infer<typeof youtubeEmbedSchema>;

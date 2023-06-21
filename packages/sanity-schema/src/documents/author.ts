@@ -17,8 +17,8 @@ export const authorSchema = defineType({
 				maxLength: 96
 			}
 		}),
-		defineField(mainImage),
-		defineField(bioPortableTextSchema),
+		defineField({ ...mainImage, title: "Image", name: "image" }),
+		defineField({ ...bioPortableTextSchema, name: "bio" }),
 		cta("Find out more link", "Adds a 'Find out more about me' button"),
 		defineField({
 			name: "twitterHandle",

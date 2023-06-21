@@ -34,7 +34,7 @@ export const bannerSchema = defineType({
 				maxLength: 96
 			}
 		}),
-		mainImage,
+		defineField({ ...mainImage, title: "Banner Image", name: "bannerImage" }),
 		defineField({
 			name: "ctas",
 			type: "array",

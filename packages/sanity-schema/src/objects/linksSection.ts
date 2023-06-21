@@ -1,29 +1,27 @@
-import { s } from "@sanity-typed/schema-builder";
-import { bodyPortableTextSchema } from "./bodyPortableText";
-import { linkSchema } from "./link";
+import { defineType, defineField, defineArrayMember } from "@sanity-typed/types";
+import { bodySchema } from "./bodyPortableText";
+import { link } from "./link";
 
-export const linkSectionSchema = s.objectNamed({
+export const linkSectionSchema = defineType({
 	title: "Links Section",
 	name: "linksSection",
+	type: "object",
 	fields: [
-		{
+		defineField({
 			name: "linkSectionTitle",
-			type: s.string(),
+			type: "string",
 			title: "Section Title"
-		},
-		{
+		}),
+		defineField({
+			...bodySchema,
 			name: "linkSectionDescription",
-			type: bodyPortableTextSchema,
 			description: "Add a short description of this section if you like"
-		},
-		{
+		}),
+		defineField({
 			name: "links",
 			title: "Links",
-			type: s.array({
-				of: [linkSchema]
-			})
-		}
+			type: "array",
+			of: [defineArrayMember(link)]
+		})
 	]
 });
-
-export type LinkSection = s.infer<typeof linkSectionSchema>;

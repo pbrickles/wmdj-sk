@@ -28,7 +28,7 @@ export const postSchema = defineType({
 		titleField,
 		slugField,
 		publishedAtField,
-		defineField(featuredEpisodeSchema),
+		defineField({ ...featuredEpisodeSchema, name: "featuredEpisode" }),
 		defineField(mainImage),
 		defineField(excerptPortableTextSchema),
 		defineField(bodySchema),

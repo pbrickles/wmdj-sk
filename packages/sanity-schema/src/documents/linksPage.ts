@@ -7,12 +7,12 @@ import {
 	defineType
 } from "@sanity-typed/types";
 import {
-	bodyPortableTextSchema,
 	mainImage,
-	link,
 	titleField,
 	slugField,
-	publishedAtField
+	publishedAtField,
+	bodySchema,
+	linkSectionSchema
 } from "../objects";
 import { baseConfig } from "../helpers/baseConfig";
 
@@ -25,11 +25,11 @@ export const linksPageSchema = defineType({
 		slugField,
 		defineField(mainImage),
 		publishedAtField,
-		defineField(bodyPortableTextSchema),
+		defineField(bodySchema),
 		defineField({
 			name: "links",
 			type: "array",
-			of: [defineArrayMember(link)],
+			of: [defineArrayMember(linkSectionSchema)],
 			title: "Links"
 		})
 	],

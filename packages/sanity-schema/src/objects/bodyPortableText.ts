@@ -1,7 +1,7 @@
 import { defineArrayMember, defineType } from "@sanity-typed/types";
 import { mainImage } from "./mainImage";
 import { authorReferenceSchema } from "./authorReference";
-// import { youtubeEmbedSchema } from "./youTubeEmbed";
+import { youtubeEmbedSchema } from "./youTubeEmbed";
 
 export const bodyPortableTextSchema = defineType({
 	name: "bodyPortableText",
@@ -48,8 +48,8 @@ export const bodyPortableTextSchema = defineType({
 			}
 		}),
 		defineArrayMember(mainImage),
-		defineArrayMember(authorReferenceSchema)
-		//youtube here
+		defineArrayMember(authorReferenceSchema),
+		defineArrayMember(youtubeEmbedSchema)
 	]
 });
 

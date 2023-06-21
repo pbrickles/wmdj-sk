@@ -1,15 +1,18 @@
-import { defineType } from "@sanity-typed/types";
-import { productCategorySchema } from "../documents/productCategory";
+import { defineType, defineField } from "@sanity-typed/types";
 
 export const categoryReferenceSchema = defineType({
 	name: "productCategories",
 	title: "Product Categories",
 	type: "object",
 	fields: [
-		{
+		defineField({
 			name: "category",
 			type: "reference",
-			to: [productCategorySchema]
-		}
+			to: [
+				{
+					type: "productCategory"
+				}
+			]
+		})
 	]
 });

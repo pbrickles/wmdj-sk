@@ -1,16 +1,19 @@
-import { authorSchema } from "../documents/author";
-import { defineType } from "@sanity-typed/types";
+import { defineType, defineField } from "@sanity-typed/types";
 
 export const authorReferenceSchema = defineType({
 	name: "authorReference",
 	title: "Author reference",
 	type: "object",
 	fields: [
-		{
+		defineField({
 			name: "author",
 			type: "reference",
-			to: [authorSchema]
-		}
+			to: [
+				{
+					type: "author"
+				}
+			]
+		})
 	],
 	preview: {
 		select: {

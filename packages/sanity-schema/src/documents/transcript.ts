@@ -18,7 +18,7 @@ export const transcriptSchema = defineType({
 			type: "string",
 			title: "Assembly AI id"
 		}),
-		defineField(featuredEpisodeSchema),
+		defineField({ ...featuredEpisodeSchema, name: "episode" }),
 		defineField(bodySchema),
 		defineField({ name: "createTranscriptPage", type: "boolean" })
 	]

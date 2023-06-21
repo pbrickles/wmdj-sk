@@ -6,7 +6,6 @@ import {
 	defineType
 } from "@sanity-typed/types";
 import { authorReferenceSchema, titleField } from "../objects";
-import { bannerReferenceSchema } from "../objects/bannerReference";
 import { baseConfig } from "../helpers/baseConfig";
 
 export const siteSettingsSchema = defineType({
@@ -49,8 +48,14 @@ export const siteSettingsSchema = defineType({
 			title: "Social Image",
 			description: "Image to appear as default when something is shared on social media"
 		}),
-		defineField(authorReferenceSchema),
-		defineField(bannerReferenceSchema)
+		defineField({ ...authorReferenceSchema, name: "reference" }),
+		defineField({
+			name: "banner",
+			type: "reference",
+			description: "choose a banner",
+			title: "Banner",
+			to: [{ type: "banner" }]
+		})
 	]
 });
 
