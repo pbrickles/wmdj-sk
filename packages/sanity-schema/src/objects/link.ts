@@ -1,20 +1,20 @@
-import { s } from "@sanity-typed/schema-builder";
+import { defineField } from "@sanity-typed/types";
 
-export const linkSchema = s.objectNamed({
-	title: "Link",
+export const link = defineField({
 	name: "link",
+	type: "object",
+	title: "Link",
 	fields: [
-		{
+		defineField({
 			name: "linkUrl",
-			type: s.url(),
-			title: "Link Url"
-		},
-		{
+			type: "url",
+			title: "Link Url",
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
 			name: "description",
-			type: s.string(),
+			type: "string",
 			title: "Short Description"
-		}
+		})
 	]
 });
-
-export type Link = s.infer<typeof linkSchema>;

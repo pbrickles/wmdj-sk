@@ -1,21 +1,20 @@
 // import EpisodeInput from "../../src/components/episodeInput"
 
-import { s } from "@sanity-typed/schema-builder";
+import { defineField, defineType } from "@sanity-typed/types";
 
-export const featuredEpisodeSchema = s.objectNamed({
+export const featuredEpisodeSchema = defineType({
+	type: "object",
 	name: "featuredEpisode",
 	title: "Featured Episode",
 	fields: [
-		{
+		defineField({
 			name: "episode",
 			title: "Episode",
-			type: s.string(),
+			type: "string",
 			description: "Select a featured episode",
 			components: {
 				// input: EpisodeInput
 			}
-		}
+		})
 	]
 });
-
-export type FeaturedEpisode = s.infer<typeof featuredEpisodeSchema>;

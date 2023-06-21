@@ -3,13 +3,14 @@
   "main": "src/index.ts",
   "types": "src/index.ts",
   "dependencies": {
-    "@sanity-typed/schema-builder": "^2.2.7",
-    "sanity": "^3.11.5"
+    "@sanity-typed/types": "^1.6.3",
+    "date-fns": "^2.30.0",
+    "sanity": "^3.12.0"
   },
   "devDependencies": {
     "eslint": "^8.6.0",
     "eslint-config-custom": "workspace:^",
     "prettier": "^2.8.8",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.4"
   }
 }

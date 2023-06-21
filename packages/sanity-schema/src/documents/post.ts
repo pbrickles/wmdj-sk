@@ -1,75 +1,49 @@
 // import { format } from "date-fns";
 
-import { s } from "@sanity-typed/schema-builder";
-// import { createSlugSchema } from "../objects/createSlugSchema";
-import { featuredEpisodeSchema } from "../objects/featuredEpisode";
-import { mainImageSchema } from "../objects/mainImage";
-import { excerptPortableTextSchema } from "../objects/excerptPortableText";
-import { authorReferenceSchema } from "../objects/authorReference";
-import { categorySchema } from "./category";
-import { bodyPortableTextSchema } from "../objects/bodyPortableText";
+import { baseConfig } from "../helpers/baseConfig";
+import {
+	titleField,
+	slugField,
+	publishedAtField,
+	authorReferenceSchema,
+	excerptPortableTextSchema,
+	featuredEpisodeSchema,
+	mainImage,
+	bodySchema,
+	categoryReferenceSchema
+} from "../objects";
+import {
+	InferSchemaValues,
+	defineArrayMember,
+	defineConfig,
+	defineField,
+	defineType
+} from "@sanity-typed/types";
 
-export const postSchema = s.document({
+export const postSchema = defineType({
 	name: "post",
 	title: "Blog Post",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title",
-			description: "Titles should be catchy, descriptive, and not too long"
-		},
-		{
-			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 96
-				}
-			})
-		},
-		{
-			name: "publishedAt",
-			type: s.datetime(),
-			title: "Published at",
-			description: "This can be used to schedule post for publishing"
-		},
-		{
-			name: "episode",
-			type: featuredEpisodeSchema,
-			title: "Linked Episode",
-			optional: true
-		},
-		{
-			name: "mainImage",
-			type: mainImageSchema,
-			title: "Main image"
-		},
-		{
-			name: "excerpt",
-			type: excerptPortableTextSchema,
-			title: "Excerpt",
-			optional: true,
-			description:
-				"This ends up on summary pages, on Google, when people share your post in social media."
-		},
-		{
+		titleField,
+		slugField,
+		publishedAtField,
+		defineField(featuredEpisodeSchema),
+		defineField(mainImage),
+		defineField(excerptPortableTextSchema),
+		defineField(bodySchema),
+		defineField({
 			name: "authors",
 			title: "Authors",
-			optional: true,
-			type: s.array({ of: [authorReferenceSchema] })
-		},
-		{
+			type: "array",
+			of: [defineArrayMember(authorReferenceSchema)]
+		}),
+		defineField({
 			name: "categories",
 			title: "Categories",
-			optional: true,
-			type: s.array({
-				of: [s.reference({ to: [categorySchema] })]
-			})
-		},
-		{
-			name: "body",
-			type: bodyPortableTextSchema
-		}
+			type: "array",
+			of: [defineArrayMember(categoryReferenceSchema)]
+		})
 	],
 	orderings: [
 		{
@@ -103,4 +77,11 @@ export const postSchema = s.document({
 	]
 });
 
-export type Post = s.infer<typeof postSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [postSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Post = Extract<Values, { _type: "post" }>;

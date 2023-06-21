@@ -12,4 +12,7 @@ export * from "./navigation";
 export * from "./linksLandingPage";
 export * from "./linksPage";
 export * from "./transcript";
+export * from "./productBrand";
+export * from "./productCategory";
+export * from "./product";
 export type CombinedPageType = Page | LinksPage | LinksLandingPage;

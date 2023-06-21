@@ -1,20 +1,26 @@
-import { s } from "@sanity-typed/schema-builder";
+import { defineType, defineField, defineConfig, InferSchemaValues } from "@sanity-typed/types";
+import { titleField } from "../objects/titleField";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const categorySchema = s.document({
+export const categorySchema = defineType({
 	name: "category",
 	title: "Category",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title"
-		},
-		{
+		titleField,
+		defineField({
 			name: "description",
-			type: s.text(),
+			type: "text",
 			title: "Description"
-		}
+		})
 	]
 });
 
-export type Category = s.infer<typeof categorySchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [categorySchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Category = Extract<Values, { _type: "category" }>;

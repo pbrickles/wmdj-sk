@@ -1,35 +1,30 @@
-import { s } from "@sanity-typed/schema-builder";
-import { linkSchema } from "../objects/link";
+import {
+	InferSchemaValues,
+	defineArrayMember,
+	defineConfig,
+	defineField,
+	defineType
+} from "@sanity-typed/types";
+import { titleField } from "../objects/titleField";
+import { slugField } from "../objects/slugField";
+import { publishedAtField } from "../objects/publishedAtField";
+import { link } from "../objects/link";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const linksLandingPageSchema = s.document({
+export const linksLandingPageSchema = defineType({
 	name: "linksLandingPage",
 	title: "Links Landing Page",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title",
-			description: "Titles should be catchy, descriptive, and not too long"
-		},
-		{
-			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 96
-				}
-			})
-		},
-		{
-			name: "publishedAt",
-			type: s.datetime(),
-			title: "Published at",
-			description: "This can be used to schedule post for publishing"
-		},
-		{
+		titleField,
+		slugField,
+		publishedAtField,
+		defineField({
 			name: "links",
-			title: "Links",
-			type: s.array({ of: [linkSchema] })
-		}
+			type: "array",
+			of: [defineArrayMember(link)],
+			title: "Links"
+		})
 	],
 	orderings: [
 		{
@@ -71,4 +66,11 @@ export const linksLandingPageSchema = s.document({
 	}
 });
 
-export type LinksLandingPage = s.infer<typeof linksLandingPageSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [linksLandingPageSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type LinksLandingPage = Extract<Values, { _type: "linksLandingPage" }>;

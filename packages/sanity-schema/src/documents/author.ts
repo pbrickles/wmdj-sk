@@ -1,43 +1,30 @@
-import { s } from "@sanity-typed/schema-builder";
-import { mainImageSchema } from "../objects/mainImage";
+import { InferSchemaValues, defineField, defineType, defineConfig } from "@sanity-typed/types";
+import { bioPortableTextSchema, cta, nameField, mainImage } from "../objects";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const authorSchema = s.document({
+export const authorSchema = defineType({
 	name: "author",
 	title: "Author",
+	type: "document",
 	fields: [
-		{
-			name: "name",
-			type: s.string()
-		},
-		{
+		nameField,
+		defineField({
 			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 56
-				}
-			})
-		},
-		{
-			name: "image",
-			type: mainImageSchema
-		},
-		{
-			name: "bio",
-			type: s.array({ of: [s.block()] }),
-			title: "Biography"
-		},
-		{
-			name: "cta",
-			type: s.url(),
-			title: "Find out more link",
-			optional: true,
-			description: "Adds a 'Find out more about me' button"
-		},
-		{
+			type: "slug",
+			title: "Slug",
+			options: {
+				source: "name",
+				maxLength: 96
+			}
+		}),
+		defineField(mainImage),
+		defineField(bioPortableTextSchema),
+		cta("Find out more link", "Adds a 'Find out more about me' button"),
+		defineField({
 			name: "twitterHandle",
-			type: s.string(),
+			type: "string",
 			title: "Twitter handle"
-		}
+		})
 	],
 	preview: {
 		select: {
@@ -48,4 +35,12 @@ export const authorSchema = s.document({
 	}
 });
 
-export type Author = s.infer<typeof authorSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [authorSchema]
+	}
+});
+
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Author = Extract<Values, { _type: "author" }>;

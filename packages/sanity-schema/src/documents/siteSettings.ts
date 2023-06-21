@@ -1,64 +1,64 @@
-import { s } from "@sanity-typed/schema-builder";
-import { authorSchema } from "./author";
-import { bannerSchema } from "./banner";
+import {
+	InferSchemaValues,
+	defineArrayMember,
+	defineConfig,
+	defineField,
+	defineType
+} from "@sanity-typed/types";
+import { authorReferenceSchema, titleField } from "../objects";
+import { bannerReferenceSchema } from "../objects/bannerReference";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const siteSettingsSchema = s.document({
+export const siteSettingsSchema = defineType({
 	name: "siteSettings",
 	title: "Site Settings",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title"
-		},
-		{
+		titleField,
+		defineField({
 			name: "siteUrl",
-			type: s.url(),
+			type: "url",
 			title: "Site Url"
-		},
-		{
+		}),
+		defineField({
 			name: "description",
-			type: s.text(),
+			type: "text",
 			title: "Description",
 			description: "Describe your blog for search engines and social media."
-		},
-		{
+		}),
+		defineField({
 			name: "seoTitle",
-			type: s.string(),
+			type: "string",
 			title: "SEO Title",
 			description:
 				"This will be appended to the title on every page (in the browser tab) and can help with SEO"
-		},
-		{
+		}),
+		defineField({
 			name: "keywords",
 			title: "Keywords",
 			description: "Add keywords that describes your blog.",
-			type: s.array({
-				of: [s.string()],
-				options: {
-					layout: "tags"
-				}
-			})
-		},
-		{
+			type: "array",
+			of: [defineArrayMember({ type: "string" })],
+			options: {
+				layout: "tags"
+			}
+		}),
+		defineField({
 			name: "socialImage",
-			type: s.image(),
+			type: "image",
 			title: "Social Image",
 			description: "Image to appear as default when something is shared on social media"
-		},
-		{
-			name: "author",
-			type: s.reference({ to: [authorSchema] }),
-			description: "Publish an author and set a reference to them here.",
-			title: "Author"
-		},
-		{
-			name: "banner",
-			type: s.reference({ to: [bannerSchema] }),
-			description: "choose a banner",
-			title: "Banner"
-		}
+		}),
+		defineField(authorReferenceSchema),
+		defineField(bannerReferenceSchema)
 	]
 });
 
-export type SiteSettings = s.infer<typeof siteSettingsSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [siteSettingsSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type SiteSettings = Extract<Values, { _type: "siteSettings" }>;

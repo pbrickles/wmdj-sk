@@ -1,49 +1,62 @@
-import { s } from "@sanity-typed/schema-builder";
-import { mainImageSchema } from "../objects/mainImage";
-import { linkSchema } from "../objects/link";
+import { link } from "../objects/link";
+import { mainImage } from "../objects";
+import {
+	defineField,
+	defineType,
+	defineArrayMember,
+	InferSchemaValues,
+	defineConfig
+} from "@sanity-typed/types";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const bannerSchema = s.document({
+export const bannerSchema = defineType({
 	name: "banner",
 	title: "Banner",
+	type: "document",
 	fields: [
-		{
+		defineField({
 			name: "mainText",
-			type: s.string(),
+			type: "string",
 			title: "Main text"
-		},
-		{
+		}),
+		defineField({
 			name: "text",
-			type: s.string(),
+			type: "string",
 			title: "Text",
 			description: "The short piece of text to display in the banner"
-		},
-		{
+		}),
+		defineField({
 			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 25
-				}
-			})
-		},
-		{
-			name: "bannerImage",
-			type: mainImageSchema,
-			title: "Image"
-		},
-		{
+			type: "slug",
+			title: "Slug",
+			options: {
+				source: "mainText",
+				maxLength: 96
+			}
+		}),
+		mainImage,
+		defineField({
 			name: "ctas",
-			type: s.array({ of: [linkSchema] }),
+			type: "array",
+			of: [defineArrayMember(link)],
 			title: "CTAs",
 			description: "Add CTAs",
-			optional: true
-		},
-		{
+			validation: (Rule) => Rule.required()
+		}),
+		defineField({
 			name: "dismissedTab",
-			type: s.string(),
+			type: "string",
 			title: "Dismissed Tab",
 			description: "If the banner is dismissed, this can allow the user to view it again"
-		}
+		})
 	]
 });
 
-export type Banner = s.infer<typeof bannerSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [bannerSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Banner = Extract<Values, { _type: "banner" }>;

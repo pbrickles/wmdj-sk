@@ -1,15 +1,15 @@
-import { s } from "@sanity-typed/schema-builder";
 import { authorSchema } from "../documents/author";
+import { defineType } from "@sanity-typed/types";
 
-export const authorReferenceSchema = s.objectNamed({
+export const authorReferenceSchema = defineType({
 	name: "authorReference",
 	title: "Author reference",
+	type: "object",
 	fields: [
 		{
 			name: "author",
-			type: s.reference({
-				to: [authorSchema]
-			})
+			type: "reference",
+			to: [authorSchema]
 		}
 	],
 	preview: {
@@ -19,5 +19,3 @@ export const authorReferenceSchema = s.objectNamed({
 		}
 	}
 });
-
-export type AuthorReference = s.infer<typeof authorReferenceSchema>;

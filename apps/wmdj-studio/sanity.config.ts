@@ -1,4 +1,4 @@
-import { defineConfig } from "sanity";
+import { defineConfig } from "@sanity-typed/types";
 import { deskTool } from "sanity/desk";
 import { visionTool } from "@sanity/vision";
 import { getSanityConfig } from "./config";
@@ -24,16 +24,16 @@ export default defineConfig({
 	plugins: [deskTool(), visionTool()],
 	schema: {
 		types: [
-			authorSchema.schema(),
-			bannerSchema.schema(),
-			siteSettingsSchema.schema(),
-			postSchema.schema(),
-			categorySchema.schema(),
-			linksLandingPageSchema.schema(),
-			linksPageSchema.schema(),
-			navigationSchema.schema(),
-			pageSchema.schema(),
-			transcriptSchema.schema()
+			authorSchema,
+			bannerSchema,
+			siteSettingsSchema,
+			postSchema,
+			categorySchema,
+			linksLandingPageSchema,
+			linksPageSchema,
+			navigationSchema,
+			pageSchema,
+			transcriptSchema
 		]
 	}
 });

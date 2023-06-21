@@ -1,50 +1,37 @@
 // import { format } from "date-fns";
+import {
+	InferSchemaValues,
+	defineArrayMember,
+	defineConfig,
+	defineField,
+	defineType
+} from "@sanity-typed/types";
+import {
+	bodyPortableTextSchema,
+	mainImage,
+	link,
+	titleField,
+	slugField,
+	publishedAtField
+} from "../objects";
+import { baseConfig } from "../helpers/baseConfig";
 
-import { s } from "@sanity-typed/schema-builder";
-import { mainImageSchema } from "../objects/mainImage";
-import { bodyPortableTextSchema } from "../objects/bodyPortableText";
-import { linkSectionSchema } from "../objects/linksSection";
-
-export const linksPageSchema = s.document({
+export const linksPageSchema = defineType({
 	name: "linksPage",
+	type: "document",
 	title: "Links Page",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title",
-			description: "Titles should be catchy, descriptive, and not too long"
-		},
-		{
-			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 96
-				}
-			})
-		},
-		{
-			name: "image",
-			type: mainImageSchema
-		},
-		{
-			name: "publishedAt",
-			type: s.datetime(),
-			title: "Published at",
-			description: "This can be used to schedule post for publishing"
-		},
-		{
-			name: "body",
-			type: bodyPortableTextSchema,
-			title: "Body"
-		},
-		{
+		titleField,
+		slugField,
+		defineField(mainImage),
+		publishedAtField,
+		defineField(bodyPortableTextSchema),
+		defineField({
 			name: "links",
-			title: "Links",
-			type: s.array({
-				of: [linkSectionSchema]
-			})
-		}
+			type: "array",
+			of: [defineArrayMember(link)],
+			title: "Links"
+		})
 	],
 	orderings: [
 		{
@@ -78,4 +65,11 @@ export const linksPageSchema = s.document({
 	]
 });
 
-export type LinksPage = s.infer<typeof linksPageSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [linksPageSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type LinksPage = Extract<Values, { _type: "linksPage" }>;

@@ -1,22 +1,30 @@
-import { s } from "@sanity-typed/schema-builder";
+import { defineField, defineType } from "@sanity-typed/types";
 
-export const mainImageSchema = s.image({
-	fields: [
-		{
-			name: "caption",
-			type: s.string(),
-			optional: true
-		},
-		{
-			name: "alt",
-			type: s.string(),
-			title: "Alternative text",
-			description: "Important for SEO and accessibility."
-		}
-	],
+export const mainImage = defineType({
+	name: "mainImage",
+	type: "image",
+	title: "Image",
 	options: {
 		hotspot: true
+	},
+	fields: [
+		defineField({
+			name: "caption",
+			type: "string",
+			title: "Caption"
+		}),
+		defineField({
+			name: "alt",
+			type: "string",
+			title: "Alternative text",
+			description: "Important for SEO and accessiblity.",
+			validation: (Rule) => Rule.error("You have to fill out the alternative text.").required()
+		})
+	],
+	preview: {
+		select: {
+			imageUrl: "asset.url",
+			title: "caption"
+		}
 	}
 });
-
-export type MainImage = s.infer<typeof mainImageSchema>;

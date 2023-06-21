@@ -1,27 +1,32 @@
-import { s } from "@sanity-typed/schema-builder";
 import { navItemSchema } from "../objects/navItem";
+import { InferSchemaValues, defineConfig, defineField, defineType } from "@sanity-typed/types";
+import { titleField } from "../objects/titleField";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const navigationSchema = s.document({
+export const navigationSchema = defineType({
 	name: "navigation",
 	title: "Navigation",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title"
-		},
-		{
+		titleField,
+		defineField({
 			name: "items",
-			type: s.array({
-				of: [navItemSchema]
-			}),
+			type: "array",
+			of: [navItemSchema],
 			title: "Nav Items",
 			description: "Add nav items",
 			options: {
 				layout: "tags"
 			}
-		}
+		})
 	]
 });
 
-export type Navigation = s.infer<typeof navigationSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [navigationSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Navigation = Extract<Values, { _type: "navigation" }>;

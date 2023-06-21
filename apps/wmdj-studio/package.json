@@ -18,12 +18,13 @@
   ],
   "dependencies": {
     "@sanity-typed/schema-builder": "^2.2.7",
+    "@sanity-typed/types": "^1.6.3",
     "@sanity/vision": "^3.11.5",
     "date-fns": "^2.30.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
-    "sanity": "^3.11.5",
+    "sanity": "^3.12.0",
     "sanity-schema": "workspace:^",
     "styled-components": "^5.3.9"
   },
@@ -34,6 +35,6 @@
     "eslint": "^8.6.0",
     "eslint-config-custom": "workspace:^",
     "prettier": "^2.8.8",
-    "typescript": "^4.9.5"
+    "typescript": "^5.0.4"
   }
 }

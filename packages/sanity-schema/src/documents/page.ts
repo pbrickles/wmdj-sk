@@ -1,48 +1,25 @@
 // import { format } from "date-fns";
 
-import { s } from "@sanity-typed/schema-builder";
-import { mainImageSchema } from "../objects/mainImage";
-import { bodyPortableTextSchema } from "../objects/bodyPortableText";
+import { defineType, defineField, defineConfig, InferSchemaValues } from "@sanity-typed/types";
 
-export const pageSchema = s.document({
+import { bodySchema, mainImage, publishedAtField, slugField, titleField } from "../objects";
+import { baseConfig } from "../helpers/baseConfig";
+
+export const pageSchema = defineType({
 	name: "page",
 	title: "Page",
+	type: "document",
 	fields: [
-		{
-			name: "title",
-			type: s.string(),
-			title: "Title",
-			description: "Titles should be catchy, descriptive, and not too long"
-		},
-		{
-			name: "slug",
-			type: s.slug({
-				options: {
-					maxLength: 96
-				}
-			})
-		},
-		{
-			name: "mainImage",
-			type: mainImageSchema,
-			title: "Main image"
-		},
-		{
-			name: "publishedAt",
-			type: s.datetime(),
-			title: "Published at",
-			description: "This can be used to schedule post for publishing"
-		},
-		{
-			name: "body",
-			type: bodyPortableTextSchema
-		},
-		{
+		titleField,
+		slugField,
+		defineField(mainImage),
+		publishedAtField,
+		defineField(bodySchema),
+		defineField({
 			name: "buyMeACoffee",
-			type: s.boolean(),
-			title: "Include Buy Me A Coffee button?",
-			optional: true
-		}
+			type: "boolean",
+			title: "Include Buy Me A Coffee button?"
+		})
 	],
 	orderings: [
 		{
@@ -76,4 +53,11 @@ export const pageSchema = s.document({
 	]
 });
 
-export type Page = s.infer<typeof pageSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [pageSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Page = Extract<Values, { _type: "page" }>;

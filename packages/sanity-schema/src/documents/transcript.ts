@@ -1,34 +1,34 @@
-import { s } from "@sanity-typed/schema-builder";
-import { featuredEpisodeSchema } from "../objects/featuredEpisode";
-import { bodyPortableTextSchema } from "../objects/bodyPortableText";
+import { InferSchemaValues, defineConfig, defineField, defineType } from "@sanity-typed/types";
+import { bodySchema, featuredEpisodeSchema } from "../objects";
+import { baseConfig } from "../helpers/baseConfig";
 
-export const transcriptSchema = s.document({
+export const transcriptSchema = defineType({
+	type: "document",
 	name: "transcript",
 	title: "Transcript",
 	fields: [
-		{
+		defineField({
 			name: "title",
-			type: s.string(),
+			type: "string",
 			title: "Title",
 			description: "Season and episode number would probably work well"
-		},
-		{
+		}),
+		defineField({
 			name: "assemblyAiId",
-			type: s.string(),
+			type: "string",
 			title: "Assembly AI id"
-		},
-		{
-			name: "episode",
-			type: featuredEpisodeSchema,
-			title: "Linked Episode"
-		},
-		{
-			name: "body",
-			type: bodyPortableTextSchema,
-			title: "Body"
-		},
-		{ name: "createTranscriptPage", type: s.boolean(), default: false }
+		}),
+		defineField(featuredEpisodeSchema),
+		defineField(bodySchema),
+		defineField({ name: "createTranscriptPage", type: "boolean" })
 	]
 });
 
-export type Transcript = s.infer<typeof transcriptSchema>;
+const tempConfig = defineConfig({
+	...baseConfig,
+	schema: {
+		types: [transcriptSchema]
+	}
+});
+type Values = InferSchemaValues<typeof tempConfig>;
+export type Transcript = Extract<Values, { _type: "transcript" }>;
