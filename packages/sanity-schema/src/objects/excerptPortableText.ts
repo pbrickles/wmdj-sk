@@ -13,15 +13,8 @@ export const excerptBlockSchema = s.block({
 	}
 });
 
-export const excerptPortableTextSchema = s.objectNamed({
-	name: "excerptPortableText",
-	title: "Excerpt",
-	fields: [
-		{
-			name: "blocks",
-			type: s.array({
-				of: [excerptBlockSchema]
-			})
-		}
-	]
+export const excerptPortableTextSchema = s.array({
+	of: [excerptBlockSchema]
 });
+
+export type ExcerptPortableText = s.infer<typeof excerptPortableTextSchema>;

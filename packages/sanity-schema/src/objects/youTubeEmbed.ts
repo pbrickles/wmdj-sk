@@ -1,5 +1,5 @@
 import { s } from "@sanity-typed/schema-builder";
-import YouTubePreview from "../../src/previews/youtube/youTubeEmbed";
+// import YouTubePreview from "../../src/previews/youtube/youTubeEmbed";
 
 export const youtubeEmbedSchema = s.objectNamed({
 	name: "youTubeEmbed",
@@ -29,3 +29,5 @@ export const youtubeEmbedSchema = s.objectNamed({
 	]
 	// component: YouTubePreview
 });
+
+export type YouTubeEmbed = s.infer<typeof youtubeEmbedSchema>;

@@ -19,3 +19,5 @@ export const authorReferenceSchema = s.objectNamed({
 		}
 	}
 });
+
+export type AuthorReference = s.infer<typeof authorReferenceSchema>;

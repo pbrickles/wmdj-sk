@@ -19,3 +19,5 @@ export const navItemSchema = s.objectNamed({
 		}
 	]
 });
+
+export type NavItem = s.infer<typeof navItemSchema>;

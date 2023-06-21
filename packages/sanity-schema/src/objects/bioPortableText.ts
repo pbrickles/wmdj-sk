@@ -12,15 +12,8 @@ export const bioBlockSchema = s.block({
 	}
 });
 
-export const bioPortableTextSchema = s.objectNamed({
-	name: "bioPortableText",
-	title: "Excerpt",
-	fields: [
-		{
-			name: "blocks",
-			type: s.array({
-				of: [bioBlockSchema]
-			})
-		}
-	]
+export const bioPortableTextSchema = s.array({
+	of: [bioBlockSchema]
 });
+
+export type BioPortableText = s.infer<typeof bioPortableTextSchema>;

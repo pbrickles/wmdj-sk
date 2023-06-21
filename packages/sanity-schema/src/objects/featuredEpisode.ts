@@ -17,3 +17,5 @@ export const featuredEpisodeSchema = s.objectNamed({
 		}
 	]
 });
+
+export type FeaturedEpisode = s.infer<typeof featuredEpisodeSchema>;

@@ -1,6 +1,7 @@
 import { s } from "@sanity-typed/schema-builder";
 import { mainImageSchema } from "./mainImage";
 import { authorReferenceSchema } from "./authorReference";
+import { youtubeEmbedSchema } from "./youTubeEmbed";
 
 export const bodyTextBlockSchema = s.block({
 	styles: [
@@ -21,39 +22,40 @@ export const bodyTextBlockSchema = s.block({
 		decorators: [
 			{ title: "Strong", value: "strong" },
 			{ title: "Emphasis", value: "em" }
-		]
+		],
 		// Annotations can be any object structure - e.g. a link or a footnote.
-		// annotations: [
-		// 	{
-		// 		name: "link",
-		// 		type: "object",
-		// 		title: "URL",
-		// 		fields: [
-		// 			{
-		// 				title: "URL",
-		// 				name: "href",
-		// 				type: "url"
-		// 			}
-		// 		]
-		// 	}
-		// ]
+		annotations: [
+			{
+				name: "link",
+				type: "object",
+				title: "URL",
+				fields: [
+					{
+						title: "URL",
+						name: "href",
+						type: "url"
+					}
+				]
+			}
+		]
 	}
 });
 
-export const bodyPortableTextSchema = s.objectNamed({
-	name: "bodyPortableText",
-	title: "Body",
-	fields: [
-		{
-			name: "blocks",
-			type: s.array({
-				of: [
-					bodyTextBlockSchema,
-					mainImageSchema,
-					authorReferenceSchema
-					// { type: "youTubeEmbed" }
-				]
-			})
-		}
-	]
+// const bodyMainImageSchema = s.objectNamed({
+// 	name: "mainImage",
+// 	fields: [
+
+// 		alt: s.string(),
+// 		asset: {
+// 			_ref: "image-4f3aef9945705e4c674f57df07bd4d7bad225c08-1199x1200-png",
+// 			_type: "reference"
+// 		},
+// 		caption: "Photo by Xenia Bogarova on Unsplash"
+// 	],
+// });
+
+export const bodyPortableTextSchema = s.array({
+	of: [bodyTextBlockSchema, mainImageSchema, authorReferenceSchema, youtubeEmbedSchema]
 });
+
+export type BodyPortableText = s.infer<typeof bodyPortableTextSchema>;

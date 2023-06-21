@@ -16,3 +16,5 @@ export const linkSchema = s.objectNamed({
 		}
 	]
 });
+
+export type Link = s.infer<typeof linkSchema>;

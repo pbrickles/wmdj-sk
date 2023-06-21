@@ -40,7 +40,7 @@ export const postSchema = s.document({
 			optional: true
 		},
 		{
-			name: "image",
+			name: "mainImage",
 			type: mainImageSchema,
 			title: "Main image"
 		},

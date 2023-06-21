@@ -25,3 +25,5 @@ export const linkSectionSchema = s.objectNamed({
 		}
 	]
 });
+
+export type LinkSection = s.infer<typeof linkSectionSchema>;

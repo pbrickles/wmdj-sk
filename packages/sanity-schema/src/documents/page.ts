@@ -23,7 +23,7 @@ export const pageSchema = s.document({
 			})
 		},
 		{
-			name: "image",
+			name: "mainImage",
 			type: mainImageSchema,
 			title: "Main image"
 		},
