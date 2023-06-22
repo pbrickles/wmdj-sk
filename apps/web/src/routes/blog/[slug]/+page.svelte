@@ -5,7 +5,8 @@
 	import type { Post } from "sanity-schema";
 	export let data;
 
-	function getPostBySlug(posts: Post[], slug: string) {
+	type PostWithImageUrl = Post & { mainImageUrl: string };
+	function getPostBySlug(posts: PostWithImageUrl[], slug: string) {
 		const post = posts.find((post) => post.slug.current === slug);
 		return post;
 	}
@@ -17,6 +18,9 @@
 </script>
 
 {#if post}
+	<pre>
+	{JSON.stringify(post.mainImageUrl, null, 2)}
+	</pre>
 	<h1>{post.title}</h1>
 	<PortableText value={post.body} />
 {/if}
