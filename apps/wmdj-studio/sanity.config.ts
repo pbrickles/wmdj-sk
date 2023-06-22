@@ -1,6 +1,5 @@
 import { defineConfig } from "@sanity-typed/types";
 import { deskTool } from "sanity/desk";
-import { visionTool } from "@sanity/vision";
 import { getSanityConfig } from "./config";
 import {
 	authorSchema,
@@ -12,7 +11,10 @@ import {
 	linksPageSchema,
 	navigationSchema,
 	pageSchema,
-	transcriptSchema
+	transcriptSchema,
+	productBrandSchema,
+	productCategorySchema,
+	productSchema
 } from "sanity-schema";
 
 const sanityConfig = getSanityConfig();
@@ -21,7 +23,7 @@ export default defineConfig({
 	name: "default",
 	title: "Why Mums Don't Jump",
 	...sanityConfig,
-	plugins: [deskTool(), visionTool()],
+	plugins: [deskTool()],
 	schema: {
 		types: [
 			authorSchema,
@@ -33,7 +35,10 @@ export default defineConfig({
 			linksPageSchema,
 			navigationSchema,
 			pageSchema,
-			transcriptSchema
+			transcriptSchema,
+			productBrandSchema,
+			productCategorySchema,
+			productSchema
 		]
 	}
 });
