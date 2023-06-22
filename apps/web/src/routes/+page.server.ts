@@ -1,14 +1,13 @@
-import { fetchEpisodes } from "$lib/data/helpers/fetchEpisodes.js";
 import type { TransistorEpisodesResults } from "$lib/types";
 import { error } from "@sveltejs/kit";
 
 export async function load({ fetch }) {
-	const res = await fetchEpisodes(fetch);
+	const res = await fetch("/api/episodes");
 
 	if (res.ok) {
-		const { data }: TransistorEpisodesResults = await res.json();
-		if (data) {
-			const episodes = data.filter((episode) => episode.attributes.status === "published");
+		const { data }: { data: TransistorEpisodesResults } = await res.json();
+		if (data.data) {
+			const episodes = data.data.filter((episode) => episode.attributes.status === "published");
 			return {
 				status: 200,
 				body: {

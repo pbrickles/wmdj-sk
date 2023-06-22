@@ -15,9 +15,10 @@ export async function GET({ url }) {
 			}
 		});
 		const data = (await response.json()) as TransistorEpisodesResults;
+
 		return new Response(JSON.stringify({ data }), {
 			status: response.status,
-			headers: { contentType: "application/json" }
+			headers: { contentType: "application/json", "Cache-Control": "max-age=3600" }
 		});
 	} catch (error) {
 		if (error instanceof Error) {
