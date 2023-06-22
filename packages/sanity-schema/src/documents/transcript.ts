@@ -32,3 +32,4 @@ const tempConfig = defineConfig({
 });
 type Values = InferSchemaValues<typeof tempConfig>;
 export type Transcript = Extract<Values, { _type: "transcript" }>;
+export type TranscriptBody = Transcript["body"];

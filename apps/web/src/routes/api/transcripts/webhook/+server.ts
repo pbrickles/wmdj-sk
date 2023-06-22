@@ -1,22 +1,8 @@
 import { ASSEMBLY_WEBHOOK_AUTH_VALUE, ASSEMBLY_API_KEY } from "$env/static/private";
 import type { RequestEvent } from "../../../$types";
-import type { AssemblyTranscriptionData } from "$lib/types";
+import { getAssemblyTranscript } from "../helpers/getAssemblyTranscript";
+import { updateTranscript } from "../helpers/updateTranscript";
 import { handleWebhookAuth } from "./handleWebhookAuth";
-
-const getAssemblyTranscript = async (id: string) => {
-	const params = {
-		headers: {
-			authorization: ASSEMBLY_API_KEY,
-			Accept: "application/json"
-		},
-		method: "GET"
-	};
-	const apiUrl = `https://api.assemblyai.com/v2/transcript/${id}`;
-	const response = await fetch(apiUrl, params);
-	const data = await response.json();
-
-	return data as AssemblyTranscriptionData;
-};
 
 export async function POST({ request }: RequestEvent) {
 	const { transcript_id, status } = await request.json();
@@ -27,9 +13,34 @@ export async function POST({ request }: RequestEvent) {
 			status: 401
 		});
 	}
-	const transcript = await getAssemblyTranscript(transcript_id);
+	if (status === "error") {
+		return new Response(JSON.stringify({ error: "Transcription error at Transistor" }), {
+			status: 200,
+			headers
+		});
+	}
 
-	return new Response(JSON.stringify({ transcript_id, status }), {
-		status: 200
-	});
+	// transcript is ready so...
+	try {
+		const transcript = await getAssemblyTranscript(transcript_id, ASSEMBLY_API_KEY);
+
+		// attempt to update transcript in sanity
+		const { status, message } = await updateTranscript(transcript);
+
+		return new Response(JSON.stringify({ transcript_id, message }), {
+			status
+		});
+	} catch (error) {
+		if (error instanceof Error) {
+			return new Response(
+				JSON.stringify({ error: `Error updating transcript: ${error.message}` }),
+				{
+					status: 500
+				}
+			);
+		}
+		return new Response(JSON.stringify({ error: `Error updating transcript: ${error}` }), {
+			status: 500
+		});
+	}
 }
