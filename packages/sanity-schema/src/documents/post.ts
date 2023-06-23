@@ -85,3 +85,4 @@ const tempConfig = defineConfig({
 });
 type Values = InferSchemaValues<typeof tempConfig>;
 export type Post = Extract<Values, { _type: "post" }>;
+export type PostBody = Post["body"];

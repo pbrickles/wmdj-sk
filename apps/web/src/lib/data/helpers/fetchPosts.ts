@@ -1,17 +1,25 @@
 import { client } from "../sanity";
 import type { Post } from "sanity-schema";
-import imageUrlBuilder from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { urlFor } from "./urlFor";
 
 export async function fetchPosts() {
-	const builder = imageUrlBuilder(client);
-	const urlFor = (source: SanityImageSource) => builder.image(source);
-	const rawPosts = await client.fetch<Post[]>('*[_type == "post"]');
-	const posts = rawPosts.map((post) => {
+	const sanityPosts = await client.fetch<Post[]>('*[_type == "post"]');
+	const posts = sanityPosts.map((post) => {
 		return {
 			...post,
-			mainImageUrl: urlFor(post.mainImage.asset as SanityImageSource).url()
+			mainImageUrl: urlFor(post.mainImage.asset as SanityImageSource),
+			body: post.body.map((block) => {
+				if (block._type === "mainImage" && "asset" in block) {
+					return {
+						...block,
+						url: urlFor(block.asset as SanityImageSource)
+					};
+				}
+				return block;
+			})
 		};
 	});
+	console.log(posts);
 	return posts;
 }
