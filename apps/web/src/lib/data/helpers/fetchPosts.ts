@@ -4,7 +4,9 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "./urlFor";
 
 export async function fetchPosts() {
-	const sanityPosts = await client.fetch<Post[]>('*[_type == "post"]');
+	const sanityPosts = await client.fetch<Post[]>(
+		'*[_type == "post" && !(_id in path("drafts.**"))] | order(_createdAt desc)'
+	);
 	const posts = sanityPosts.map((post) => {
 		return {
 			...post,

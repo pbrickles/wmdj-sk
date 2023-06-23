@@ -2,6 +2,14 @@
 	import { PortableText } from "@portabletext/svelte";
 
 	export let data;
+	// const sortedPosts = data.body.posts.sort((a, b) => {
+	// 	if (!a.publishedAt || !b.publishedAt) return 0;
+	// 	if (a.publishedAt < b.publishedAt) {
+	// 		return 1;
+	// 	}
+
+	// 	return -1;
+	// });
 </script>
 
 <h1>Blog</h1>
