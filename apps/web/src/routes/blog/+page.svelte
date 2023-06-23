@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { PortableText } from "@portabletext/svelte";
+
 	export let data;
 </script>
 
@@ -9,7 +11,11 @@
 	<ul>
 		{#each data.body.posts as post}
 			<li>
-				<a href={`/blog/${post.slug.current}`}>{post.title}</a>
+				<img src={post.mainImageUrl} alt={post.mainImage.alt} height="200" width="200" />
+				<h2><a href={`/blog/${post.slug.current}`}>{post.title}</a></h2>
+				<div>
+					<PortableText value={post.excerptPortableText} />
+				</div>
 			</li>
 		{/each}
 	</ul>

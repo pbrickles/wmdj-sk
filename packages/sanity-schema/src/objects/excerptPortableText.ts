@@ -24,3 +24,5 @@ export const excerptPortableTextSchema = defineType({
 		})
 	]
 });
+
+export const excerptSchema = defineType({ ...excerptPortableTextSchema, name: "excerpt" });

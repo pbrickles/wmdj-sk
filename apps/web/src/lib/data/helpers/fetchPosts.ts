@@ -20,6 +20,5 @@ export async function fetchPosts() {
 			})
 		};
 	});
-	console.log(posts);
 	return posts;
 }
