@@ -12,9 +12,6 @@
 </script>
 
 {#if post}
-	<pre>
-	{JSON.stringify(post.mainImageUrl, null, 2)}
-	</pre>
 	<h1>{post.title}</h1>
 	<PortableText
 		value={post.body}

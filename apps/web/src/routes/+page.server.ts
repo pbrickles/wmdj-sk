@@ -1,3 +1,4 @@
+import { getAvailableEpisodeSeries } from "$lib/data/helpers/getAvaliableEpsisodeSeries.js";
 import type { TransistorEpisodesResults } from "$lib/types";
 import { error } from "@sveltejs/kit";
 
@@ -11,7 +12,8 @@ export async function load({ fetch }) {
 			return {
 				status: 200,
 				body: {
-					episodes
+					episodes,
+					availableSeries: getAvailableEpisodeSeries(episodes)
 				}
 			};
 		}

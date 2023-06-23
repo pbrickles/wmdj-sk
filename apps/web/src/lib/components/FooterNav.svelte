@@ -12,10 +12,12 @@
 		<PlayerControls episode={$player.currentEpisode} isVisible={!$player.expanded} />
 	{/if}
 	<nav>
-		{#each nav.items as navItem}
-			<li>
-				<a href={navItem.path}>{navItem.label}</a>
-			</li>
-		{/each}
+		{#if nav.items}
+			{#each nav.items as navItem}
+				<li>
+					<a href={navItem.path}>{navItem.label}</a>
+				</li>
+			{/each}
+		{/if}
 	</nav>
 </footer>
