@@ -7,12 +7,17 @@
 	import "@fontsource/poppins/700.css";
 	import { player } from "$lib/state/Player/player.js";
 	import FooterNav from "$lib/components/FooterNav.svelte";
-	import HeaderNav from "$lib/components/HeaderNav.svelte";
+	import Header from "$lib/components/Header.svelte";
+	import SkipToMainLink from "$lib/components/SkipToMainLink.svelte";
 
 	export let data;
 	player.setEpisodes(data.body.episodes);
 </script>
 
-<HeaderNav nav={data.body.mainNav} />
-<slot />
+<SkipToMainLink />
+<Header nav={data.body.mainNav} />
+<main id="mainContent">
+	<slot />
+</main>
+
 <FooterNav nav={data.body.footerNav} />
