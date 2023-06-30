@@ -15,4 +15,5 @@ export * from "./transcript";
 export * from "./productBrand";
 export * from "./productCategory";
 export * from "./product";
+export * from "./shopSettings";
 export type CombinedPageType = Page | LinksPage | LinksLandingPage;

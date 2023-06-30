@@ -14,7 +14,8 @@ import {
 	transcriptSchema,
 	productBrandSchema,
 	productCategorySchema,
-	productSchema
+	productSchema,
+	shopSettingsSchema
 } from "sanity-schema";
 
 const sanityConfig = getSanityConfig();
@@ -38,7 +39,8 @@ export default defineConfig({
 			transcriptSchema,
 			productBrandSchema,
 			productCategorySchema,
-			productSchema
+			productSchema,
+			shopSettingsSchema
 		]
 	}
 });

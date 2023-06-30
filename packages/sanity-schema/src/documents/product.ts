@@ -7,7 +7,14 @@ import {
 	defineConfig,
 	defineArrayMember
 } from "@sanity-typed/types";
-import { bodySchema, link, publishedAtField, slugField, titleField } from "../objects";
+import {
+	bodySchema,
+	featuredEpisodeSchema,
+	link,
+	publishedAtField,
+	slugField,
+	titleField
+} from "../objects";
 import { baseConfig } from "../helpers/baseConfig";
 import { productCategorySchema } from "./productCategory";
 
@@ -26,6 +33,11 @@ export const productSchema = defineType({
 				type: "productBrand"
 			},
 			validation: (Rule) => Rule.required()
+		}),
+		defineField({
+			name: "shopName",
+			type: "string",
+			title: "Shop Name"
 		}),
 		defineField({
 			name: "summary",
@@ -47,28 +59,13 @@ export const productSchema = defineType({
 			of: [defineArrayMember(productCategorySchema)]
 		}),
 		defineField({
-			name: "relatedProducts",
-			title: "Related Products",
-			type: "array",
-			of: [
-				defineArrayMember({
-					name: "relatedProduct",
-					type: "reference",
-					to: [
-						{
-							type: "product"
-						}
-					]
-				})
-			]
-		}),
-		defineField({
 			name: "price",
 			type: "number",
 			title: "Price",
 			description: "Price of the product in GBP"
 		}),
-		link
+		link,
+		defineField({ ...featuredEpisodeSchema, name: "featuredEpisode" })
 	],
 	orderings: [
 		{
