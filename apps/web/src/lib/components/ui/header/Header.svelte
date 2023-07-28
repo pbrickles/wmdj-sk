@@ -7,7 +7,7 @@
 </script>
 
 <div class="header-container">
-	<header class="flex justify-between">
+	<header class="flex items-center justify-between">
 		<div class="logo-container">
 			<a href="/">
 				<span class="font-bold">WMDJ</span>

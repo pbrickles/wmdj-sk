@@ -12,13 +12,13 @@ const config = {
 				"2xl": "1400px"
 			}
 		},
-		spacing: {
-			xs: "0.25rem",
-			sm: "0.5rem",
-			md: "1rem",
-			lg: "2rem"
-		},
 		extend: {
+			spacing: {
+				xs: "0.25rem",
+				sm: "0.5rem",
+				md: "1rem",
+				lg: "2rem"
+			},
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",

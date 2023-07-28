@@ -7,7 +7,7 @@
 	<ul>
 		{#if nav.items}
 			{#each nav.items as navItem}
-				<li class="block md:inline-block">
+				<li class="block py-4 pl-0 md:inline-block md:mr-4">
 					<a href={navItem.path}>{navItem.label}</a>
 				</li>
 			{/each}
