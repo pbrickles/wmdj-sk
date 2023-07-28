@@ -1,27 +1,58 @@
+import tailwindcssAnimate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
-export default {
+const config = {
+	darkMode: ["class"],
 	content: ["./src/**/*.{html,js,svelte,ts}"],
 	theme: {
-		fontSize: {
-			xs: ".75rem",
-			sm: ".875rem",
-			base: "1rem",
-			lg: "1.125rem",
-			xl: "1.25rem",
-			"2xl": "1.5rem",
-			"3xl": "2rem",
-			"4xl": "2.5rem",
-			headlineSm: ["2.9rem", "100%"],
-			headlineLg: ["4.375rem", "100%"]
+		container: {
+			center: true,
+			padding: "2rem",
+			screens: {
+				"2xl": "1400px"
+			}
+		},
+		spacing: {
+			xs: "0.25rem",
+			sm: "0.5rem",
+			md: "1rem",
+			lg: "2rem"
 		},
 		extend: {
-			spacing: {
-				xs: "0.25rem",
-				sm: "0.5rem",
-				md: "1rem",
-				lg: "2rem"
-			},
 			colors: {
+				border: "hsl(var(--border))",
+				input: "hsl(var(--input))",
+				ring: "hsl(var(--ring))",
+				background: "hsl(var(--background))",
+				foreground: "hsl(var(--foreground))",
+				primary: {
+					DEFAULT: "hsl(var(--primary))",
+					foreground: "hsl(var(--primary-foreground))"
+				},
+				secondary: {
+					DEFAULT: "hsl(var(--secondary))",
+					foreground: "hsl(var(--secondary-foreground))"
+				},
+				destructive: {
+					DEFAULT: "hsl(var(--destructive))",
+					foreground: "hsl(var(--destructive-foreground))"
+				},
+				muted: {
+					DEFAULT: "hsl(var(--muted))",
+					foreground: "hsl(var(--muted-foreground))"
+				},
+				accent: {
+					DEFAULT: "hsl(var(--accent))",
+					foreground: "hsl(var(--accent-foreground))"
+				},
+				popover: {
+					DEFAULT: "hsl(var(--popover))",
+					foreground: "hsl(var(--popover-foreground))"
+				},
+				card: {
+					DEFAULT: "hsl(var(--card))",
+					foreground: "hsl(var(--card-foreground))"
+				},
 				pinkDark: "#FC4966",
 				pinkLight: "#FCD6E1",
 				white: "#FFFFFF",
@@ -34,14 +65,19 @@ export default {
 				coralPink: "#FDA4AE",
 				blushPink: "#FDD9E3",
 				bookBlack: "#0d222b",
-				primary: "#FCD6E1",
-				secondary: "#FCD6E1",
 				link: "#202120",
 				heading: "#202120",
 				footer: "#FFFFFF",
 				body: "#202120"
-			}
+			},
+			borderRadius: {
+				lg: "var(--radius)",
+				md: "calc(var(--radius) - 2px)",
+				sm: "calc(var(--radius) - 4px)"
+			},
 		}
 	},
-	plugins: []
+	plugins: [tailwindcssAnimate]
 };
+
+export default config;

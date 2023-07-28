@@ -1,16 +1,20 @@
 <script lang="ts">
 	import type { Navigation } from "sanity-schema";
 	export let nav: Navigation;
-	import HeaderNav from "./HeaderNav.svelte";
+	import HeaderNavDesktop from "../header-nav/HeaderNavDesktop.svelte";
+	import HeaderNavMobile from "../header-nav/HeaderNavMobile.svelte";
+	let size;
 </script>
 
 <div class="header-container">
-	<header>
+	<header class="flex justify-between">
 		<div class="logo-container">
 			<a href="/">
 				<span class="font-bold">WMDJ</span>
 			</a>
 		</div>
-		<HeaderNav {nav} />
+
+		<HeaderNavDesktop {nav} />
+		<HeaderNavMobile />
 	</header>
 </div>

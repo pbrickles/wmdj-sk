@@ -1,5 +1,5 @@
 <div id="contentContainer" class="flex w-screen min-h-screen justify-center">
-	<div class="max-w-screen-lg">
+	<div class="max-w-screen-lg w-screen">
 		<slot />
 	</div>
 </div>
