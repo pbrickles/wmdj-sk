@@ -56,7 +56,13 @@ export const productSchema = defineType({
 			name: "categories",
 			title: "Categories",
 			type: "array",
-			of: [defineArrayMember(productCategorySchema)]
+			of: [
+				defineArrayMember({
+					type: "reference",
+					to: [{ type: "productCategory" }]
+				})
+				// defineArrayMember(productCategorySchema)
+			]
 		}),
 		defineField({
 			name: "price",
@@ -64,7 +70,12 @@ export const productSchema = defineType({
 			title: "Price",
 			description: "Price of the product in GBP"
 		}),
-		link,
+		defineField({
+			name: "link",
+			type: "url",
+			title: "Link",
+			description: "Link to the product on the external site"
+		}),
 		defineField({ ...featuredEpisodeSchema, name: "featuredEpisode" })
 	],
 	orderings: [
@@ -96,24 +107,7 @@ export const productSchema = defineType({
 				}
 			]
 		}
-	],
-	preview: {
-		select: {
-			title: "title",
-			publishedAt: "publishedAt",
-			slug: "slug",
-			media: "mainImage"
-		},
-		prepare({ title = "No title", publishedAt, slug = {}, media }) {
-			const dateSegment = format(publishedAt, "YYYY/MM");
-			const path = `/${dateSegment}/${slug.current}/`;
-			return {
-				title,
-				media,
-				subtitle: publishedAt ? path : "Missing publishing date"
-			};
-		}
-	}
+	]
 });
 
 const tempConfig = defineConfig({
