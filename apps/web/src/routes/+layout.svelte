@@ -9,15 +9,17 @@
 	import FooterNav from "$lib/components/FooterNav.svelte";
 	import Header from "$lib/components/Header.svelte";
 	import SkipToMainLink from "$lib/components/SkipToMainLink.svelte";
+	import ContentContainer from "$lib/components/ContentContainer.svelte";
 
 	export let data;
 	player.setEpisodes(data.body.episodes);
 </script>
 
-<SkipToMainLink />
-<Header nav={data.body.mainNav} />
-<main id="mainContent">
-	<slot />
-</main>
-
-<FooterNav nav={data.body.footerNav} />
+<ContentContainer>
+	<SkipToMainLink />
+	<Header nav={data.body.mainNav} />
+	<main id="mainContent">
+		<slot />
+	</main>
+	<FooterNav nav={data.body.footerNav} />
+</ContentContainer>
