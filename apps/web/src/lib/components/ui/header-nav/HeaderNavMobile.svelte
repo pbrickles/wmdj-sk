@@ -1,24 +1,17 @@
 <script lang="ts">
-	import {
-		Sheet,
-		SheetContent,
-		SheetDescription,
-		SheetHeader,
-		SheetTitle,
-		SheetTrigger
-	} from "$components/ui/sheet";
+	import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "$components/ui/sheet";
+	import type { Navigation } from "sanity-schema";
+	import NavItems from "./NavItems.svelte";
+
+	export let nav: Navigation;
 </script>
 
 <div class="md:hidden">
 	<Sheet>
-		<SheetTrigger>Open</SheetTrigger>
-		<SheetContent>
+		<SheetTrigger>Burger Menu</SheetTrigger>
+		<SheetContent size="full">
 			<SheetHeader>
-				<SheetTitle>Are you sure absolutely sure?</SheetTitle>
-				<SheetDescription>
-					This action cannot be undone. This will permanently delete your account and remove your
-					data from our servers.
-				</SheetDescription>
+				<NavItems {nav} />
 			</SheetHeader>
 		</SheetContent>
 	</Sheet>

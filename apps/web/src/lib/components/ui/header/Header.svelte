@@ -10,11 +10,11 @@
 	<header class="flex items-center justify-between">
 		<div class="logo-container">
 			<a href="/">
-				<span class="font-bold">WMDJ</span>
+				<span class="font-bold text-[30px] italic">WMDJ</span>
 			</a>
 		</div>
 
 		<HeaderNavDesktop {nav} />
-		<HeaderNavMobile />
+		<HeaderNavMobile {nav} />
 	</header>
 </div>
