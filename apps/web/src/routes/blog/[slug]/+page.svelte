@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import ImageBlock from "$lib/components/ImageBlock.svelte";
+	import ImageBlock from "$components/ui/ImageBlock.svelte";
 	import { PortableText } from "@portabletext/svelte";
 	import { error } from "@sveltejs/kit";
 	export let data;

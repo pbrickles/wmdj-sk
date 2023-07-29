@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import PlayerControls from "$lib/components/PlayerControls.svelte";
+	import PlayerControls from "$components/ui/PlayerControls.svelte";
 	import { player } from "$lib/state/Player/player.js";
 	import { onMount } from "svelte";
 	export let data;

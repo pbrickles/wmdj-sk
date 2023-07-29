@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { TabItem } from "$lib/components/Tabs/Tabs.svelte";
-	import Tabs from "$lib/components/Tabs/Tabs.svelte";
+	import type { TabItem } from "$components/ui/Tabs/Tabs.svelte";
+	import Tabs from "$components/ui/Tabs/Tabs.svelte";
 	import { getEpisodesBySeriesNumber } from "$lib/data/helpers/getEpisodesBySeriesNumber.js";
 
 	export let data;
