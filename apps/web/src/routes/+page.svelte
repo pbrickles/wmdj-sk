@@ -1,6 +1,7 @@
 <script lang="ts">
-	import type { TabItem } from "$components/ui/Tabs/Tabs.svelte";
-	import Tabs from "$components/ui/Tabs/Tabs.svelte";
+	import { Tabs, TabsContent, TabsList, TabsTrigger } from "$components/ui/tabs";
+	import type { TabItem } from "$components/ui/Tabs-v1/Tabs.svelte";
+	// import Tabs from "$components/ui/Tabs-v1/Tabs.svelte";
 	import { getEpisodesBySeriesNumber } from "$lib/data/helpers/getEpisodesBySeriesNumber.js";
 	import hero from "$lib/assets/hero.jpg";
 
@@ -9,9 +10,10 @@
 		body: { episodes, availableSeries },
 		EpisodeListComponent
 	} = data;
-	const tabs: TabItem[] = availableSeries.map((series) => ({
+
+	const tabs = availableSeries.map((series) => ({
 		label: `Series ${series}`,
-		value: series,
+		value: series.toString(),
 		component: EpisodeListComponent,
 		componentProps: { episodes: getEpisodesBySeriesNumber(episodes, series) }
 	}));
@@ -34,4 +36,19 @@
 	</div>
 </div>
 
-<Tabs items={tabs} />
+<div>
+	<Tabs value={tabs[0].value}>
+		<TabsList>
+			{#each tabs as tab}
+				<TabsTrigger value={tab.value}>{tab.label}</TabsTrigger>
+			{/each}
+		</TabsList>
+		{#each tabs as tab}
+			<TabsContent value={tab.value}>
+				<svelte:component this={tab.component} {...tab.componentProps} />
+			</TabsContent>
+		{/each}
+	</Tabs>
+</div>
+
+<!-- <Tabs items={tabs} /> -->
