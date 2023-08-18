@@ -1,15 +1,15 @@
 <script lang="ts">
-	import "../app.css";
+	import "../app.postcss";
 	import "@fontsource/poppins/100.css";
 	import "@fontsource/poppins/200.css";
 	import "@fontsource/poppins/400.css";
 	import "@fontsource/poppins/600.css";
 	import "@fontsource/poppins/700.css";
 	import { player } from "$lib/state/Player/player.js";
-	import FooterNav from "$lib/components/FooterNav.svelte";
-	import Header from "$lib/components/Header.svelte";
-	import SkipToMainLink from "$lib/components/SkipToMainLink.svelte";
-	import ContentContainer from "$lib/components/ContentContainer.svelte";
+	import FooterNav from "$components/ui/FooterNav.svelte";
+	import Header from "$components/ui/header/Header.svelte";
+	import SkipToMainLink from "$components/ui/SkipToMainLink.svelte";
+	import ContentContainer from "$components/ui/ContentContainer.svelte";
 
 	export let data;
 	player.setEpisodes(data.body.episodes);
