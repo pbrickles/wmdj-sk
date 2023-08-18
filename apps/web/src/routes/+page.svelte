@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from "$components/ui/tabs";
-	import type { TabItem } from "$components/ui/Tabs-v1/Tabs.svelte";
-	// import Tabs from "$components/ui/Tabs-v1/Tabs.svelte";
 	import { getEpisodesBySeriesNumber } from "$lib/data/helpers/getEpisodesBySeriesNumber.js";
 	import hero from "$lib/assets/hero.jpg";
 
@@ -10,13 +8,26 @@
 		body: { episodes, availableSeries },
 		EpisodeListComponent
 	} = data;
-
-	const tabs = availableSeries.map((series) => ({
-		label: `Series ${series}`,
-		value: series.toString(),
-		component: EpisodeListComponent,
-		componentProps: { episodes: getEpisodesBySeriesNumber(episodes, series) }
-	}));
+	const tabs = [
+		{
+			label: "Latest Episodes",
+			value: "latest",
+			component: EpisodeListComponent,
+			componentProps: { episodes }
+		},
+		...availableSeries.map((series) => ({
+			label: `Series ${series}`,
+			value: series.toString(),
+			component: EpisodeListComponent,
+			componentProps: { episodes: getEpisodesBySeriesNumber(episodes, series) }
+		})),
+		{
+			label: "All Episodes",
+			value: "all",
+			component: EpisodeListComponent,
+			componentProps: { episodes: [...episodes].reverse() }
+		}
+	];
 </script>
 
 <div class="pt-sm mb-lg md:grid md:gap-1 md:grid-cols-4 lg:grid-cols-12">
