@@ -48,6 +48,7 @@
 </div>
 
 <div>
+	<h2>The podcast</h2>
 	<Tabs value={tabs[0].value}>
 		<TabsList>
 			{#each tabs as tab}

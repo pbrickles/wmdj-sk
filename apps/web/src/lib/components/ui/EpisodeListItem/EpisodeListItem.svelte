@@ -3,6 +3,8 @@
 	import type { TransistorEpisode } from "$lib/types/transistor";
 	import { createDescriptionBySeason } from "./helpers/createDescriptionBySeason";
 	import PlayButton from "../PlayButton.svelte";
+	import DownloadIcon from "~icons/ant-design/cloud-download-outlined";
+	import PlusIcon from "~icons/vaadin/plus";
 
 	export let episode: TransistorEpisode;
 	const { attributes } = episode;
@@ -17,9 +19,15 @@
 	</article>
 	<footer>
 		<div>
-			<div>
-				<a href={attributes.media_url} download={attributes.title}>Download</a>
-				<a href={slug}>Find out more</a>
+			<div class="flex items-center">
+				<a
+					class="inline-flex items-center mr-md"
+					href={attributes.media_url}
+					download={attributes.title}><DownloadIcon class="mr-2" /> Download</a
+				>
+				<a href={slug} class="inline-flex items-center mr-md"
+					><PlusIcon class="mr-2" />Find out more</a
+				>
 			</div>
 			<PlayButton
 				loading={$player.loading}
