@@ -6,9 +6,6 @@
 	export { className as class };
 </script>
 
-<TabsPrimitive.List
-	class={cn("inline-flex h-10 items-center justify-center", className)}
-	{...$$restProps}
->
+<TabsPrimitive.List class={cn("inline-flex flex-wrap items-center", className)} {...$$restProps}>
 	<slot />
 </TabsPrimitive.List>
