@@ -18,7 +18,7 @@
 </script>
 
 <div
-	class="w-[50%] min-w-[100px] min-h-[100px] md:min-w-[200px] md:min-h-[200px] md:w-[200px] md:h-[200px]"
+	class="w-[50%] min-w-[100px] min-h-[100px] md:min-w-[200px] md:min-h-[200px] md:w-[200px] md:h-[200px] md:flex md:items-center"
 >
 	<img src={getImage(seriesNumber, episodeImagePath)} alt={`Series ${seriesNumber} tile`} />
 </div>

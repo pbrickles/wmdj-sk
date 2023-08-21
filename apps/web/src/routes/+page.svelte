@@ -50,7 +50,7 @@
 <div>
 	<h2>The podcast</h2>
 	<Tabs value={tabs[0].value}>
-		<TabsList>
+		<TabsList class="mb-lg">
 			{#each tabs as tab}
 				<TabsTrigger value={tab.value}>{tab.label}</TabsTrigger>
 			{/each}
