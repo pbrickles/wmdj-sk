@@ -8,7 +8,7 @@
 
 	const variant: Record<HeadingLevel, string> = {
 		1: "text-4xl lg:text-5xl",
-		2: "test-3xl ",
+		2: "text-3xl ",
 		3: "text-2xl",
 		4: "text-xl",
 		5: "text-l",
@@ -18,7 +18,7 @@
 
 <svelte:element
 	this={`h${level}`}
-	class={cn("scroll-m-20 uppercase font-bold tracking-[1px]", variant[level], className)}
+	class={cn("scroll-m-20 font-bold tracking-[1px]", variant[level], className)}
 >
 	<slot />
 </svelte:element>

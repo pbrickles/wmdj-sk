@@ -2,6 +2,7 @@
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from "$components/ui/tabs";
 	import { getEpisodesBySeriesNumber } from "$lib/data/helpers/getEpisodesBySeriesNumber.js";
 	import hero from "$lib/assets/hero.jpg";
+	import Heading from "$components/ui/typography/heading/Heading.svelte";
 
 	export let data;
 	const {
@@ -48,7 +49,7 @@
 </div>
 
 <div>
-	<h2>The podcast</h2>
+	<Heading level={2} class="mb-md text-[26px] md:text-[28px] italic">The podcast</Heading>
 	<Tabs value={tabs[0].value}>
 		<TabsList class="mb-lg">
 			{#each tabs as tab}
