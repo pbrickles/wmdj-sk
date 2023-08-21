@@ -72,14 +72,19 @@ describe("player store", () => {
 				helper: "handleEpisodePlay"
 			},
 			{
-				method: player.setExpanded,
-				args: true,
-				helper: "setExpandedStatus"
+				method: player.setUIStatus,
+				args: "EXPANDED",
+				helper: "setStatus"
 			},
 			{
-				method: player.setExpanded,
-				args: false,
-				helper: "setExpandedStatus"
+				method: player.setUIStatus,
+				args: "HIDDEN",
+				helper: "setStatus"
+			},
+			{
+				method: player.setUIStatus,
+				args: "FOOTER",
+				helper: "setStatus"
 			},
 			{
 				method: player.setCurrentEpisodeTimeElapsed,

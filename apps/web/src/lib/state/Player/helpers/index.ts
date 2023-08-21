@@ -4,5 +4,5 @@ export * from "./setCurrentEpisodeState";
 export * from "./setPlayState";
 export * from "./setLoadingState";
 export * from "./handleEpisodePlay";
-export * from "./setExpandedStatus";
+export * from "./setStatus";
 export * from "./setEpisodeTimeElapsed";

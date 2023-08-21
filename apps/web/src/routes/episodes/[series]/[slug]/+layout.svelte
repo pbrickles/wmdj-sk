@@ -7,7 +7,7 @@
 	$: episode = data.body.episode;
 	$: transcript = data.body.episodeTranscript;
 	onMount(() => {
-		player.setExpanded(true);
+		player.setUIStatus("EXPANDED");
 	});
 </script>
 
