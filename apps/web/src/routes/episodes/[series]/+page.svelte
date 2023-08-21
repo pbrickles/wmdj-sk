@@ -1,5 +1,5 @@
 <script lang="ts">
-	import EpisodeList from "$components/ui/EpisodeList/EpisodeList.svelte";
+	import EpisodeList from "$components/ui/episode-list/EpisodeList.svelte";
 
 	export let data;
 	$: episodes = data.body.seriesEpisodes;

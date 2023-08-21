@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { TransistorEpisode } from "$lib/types/transistor";
-	import EpisodeListItem from "$components/ui/EpisodeListItem/EpisodeListItem.svelte";
+	import EpisodeListItem from "$components/ui/episode-list-item/EpisodeListItem.svelte";
 
 	export let episodes: TransistorEpisode[];
 </script>

@@ -2,6 +2,7 @@
 	import { Tabs, TabsContent, TabsList, TabsTrigger } from "$components/ui/tabs";
 	import { getEpisodesBySeriesNumber } from "$lib/data/helpers/getEpisodesBySeriesNumber.js";
 	import hero from "$lib/assets/hero.jpg";
+	import arrowDown from "$lib/assets/arrow-down.png";
 	import Heading from "$components/ui/typography/heading/Heading.svelte";
 
 	export let data;
@@ -31,19 +32,23 @@
 	];
 </script>
 
-<div class="pt-sm mb-lg md:grid md:gap-1 md:grid-cols-4 lg:grid-cols-12">
-	<div class="md:col-span-2 lg:col-span-4">
-		<h1
-			class="font-bold italic text-headlineSm lg:text-headlineLg max-w-[350px] lg:max-w-[200px] mb-6"
+<div class="pt-sm mb-lg sm:grid md:gap-1 md:grid-cols-4 lg:grid-cols-12">
+	<div class="flex flex-col lg:justify-center sm:col-span-2 lg:col-span-4 lg:mb-8">
+		<Heading
+			level={1}
+			class="font-bold italic mb-6 max-w-[350px] md:text-8 md:mt-4 md:mb-8 lg:text-[82px] lg:leading-[100%] lg:mb-10 lg:max-w-[200px] "
 		>
 			Why Mums Don't Jump
-		</h1>
-		<p class="text-base">
+		</Heading>
+		<p class="text-lg mb-8 leading-relaxed">
 			Busting taboos about leaks & lumps after childbirth. A kick ass podcast about incontinence,
 			prolapse and pelvic pain.
 		</p>
+		<div>
+			<img src={arrowDown} alt="down arrow" />
+		</div>
 	</div>
-	<div class="md:col-span-2 lg:col-span-8">
+	<div class="sm:col-span-2 lg:col-span-7 lg:col-start-6">
 		<img src={hero} alt="Women talking about prolapse and pelvic organ problems" />
 	</div>
 </div>
