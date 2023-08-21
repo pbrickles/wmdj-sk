@@ -68,5 +68,3 @@
 		{/each}
 	</Tabs>
 </div>
-
-<!-- <Tabs items={tabs} /> -->

@@ -3,10 +3,10 @@
 	import { formatTime } from "$lib/utils/formatTime";
 	import PlayButton from "./PlayButton.svelte";
 	import type { TransistorEpisode } from "$lib/types";
+	import Progress from "./progress/Progress.svelte";
 
 	export let isVisible = true;
 	export let episode: TransistorEpisode;
-	let currentTime = 0;
 	const handlePlay = () => player.episodePlay(episode.id);
 </script>
 
@@ -22,8 +22,12 @@
 		/>
 
 		<div class="progress-bar">
-			{formatTime(currentTime)}
-			<progress max={episode.attributes.duration} value={currentTime} />
+			{formatTime($player.currentEpisodeTimeElapsed)}
+			<Progress
+				max={episode.attributes.duration}
+				value={$player.currentEpisodeTimeElapsed}
+				class="w-[60%]"
+			/>
 			{formatTime(episode.attributes.duration)}
 		</div>
 	</section>

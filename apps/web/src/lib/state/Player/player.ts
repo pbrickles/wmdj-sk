@@ -7,7 +7,8 @@ import {
 	setAudioElementState,
 	setCurrentEpisodeState,
 	handleEpisodePlay,
-	setExpandedStatus
+	setExpandedStatus,
+	setEpisodeTimeElapsed
 } from "./helpers";
 
 export type PlayerState = {
@@ -18,12 +19,14 @@ export type PlayerState = {
 	loading: boolean;
 	audio?: HTMLAudioElement;
 	episodes: TransistorEpisode[];
+	currentEpisodeTimeElapsed: number;
 };
 
 const playerState = () => {
 	const initialState: PlayerState = {
 		status: "HIDDEN",
 		currentEpisode: null,
+		currentEpisodeTimeElapsed: 0,
 		playing: false,
 		loading: false,
 		audio: undefined,
@@ -59,6 +62,10 @@ const playerState = () => {
 		update((state) => setAudioElementState(state, audio));
 	}
 
+	function setCurrentEpisodeTimeElapsed(time: number) {
+		update((state) => setEpisodeTimeElapsed(state, time));
+	}
+
 	function setExpanded(expand: boolean) {
 		update((state) => setExpandedStatus(state, expand));
 	}
@@ -78,7 +85,8 @@ const playerState = () => {
 		play,
 		pause,
 		setLoadingState,
-		episodePlay
+		episodePlay,
+		setCurrentEpisodeTimeElapsed
 	};
 };
 

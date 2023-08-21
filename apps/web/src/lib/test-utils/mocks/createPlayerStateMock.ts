@@ -12,7 +12,8 @@ export const createPlayerStateMock: MockFunction<PlayerState> = (data) => {
 		playing: false,
 		loading: false,
 		episodes: [],
-		audio: undefined
+		audio: undefined,
+		currentEpisodeTimeElapsed: 0
 	};
 
 	return mergeMock(playerState, data);

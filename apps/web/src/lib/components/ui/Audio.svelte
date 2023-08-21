@@ -21,9 +21,14 @@
 		}
 	}
 
-	function timeUpdate() {
+	function updateTime(
+		e: Event & {
+			currentTarget: EventTarget & HTMLAudioElement;
+		}
+	) {
+		const audio = e.target as HTMLAudioElement | null;
 		if (audio) {
-			currentTime = audio.currentTime;
+			player.setCurrentEpisodeTimeElapsed(audio.currentTime);
 		}
 	}
 </script>
@@ -33,7 +38,7 @@
 	src={$player.currentEpisode?.attributes.media_url}
 	on:loadstart={(e) => player.setLoadingState(true)}
 	on:loadedmetadata={updateMeta}
-	on:timeupdate={timeUpdate}
+	on:timeupdate={updateTime}
 	on:loadeddata={(e) => play()}
 	on:canplay={(e) => player.setLoadingState(false)}
 />

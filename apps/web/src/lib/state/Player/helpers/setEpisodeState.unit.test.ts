@@ -14,7 +14,7 @@ describe("setEpisodeState", () => {
 	describe("GIVEN no episodes", () => {
 		it("SHOULD set the episodes to an empty array", () => {
 			const state = createPlayerStateMock();
-			const newState = setEpisodeState(state, undefined);
+			const newState = setEpisodeState(state, []);
 			expect(newState).toEqual(createPlayerStateMock({ episodes: [] }));
 		});
 	});

@@ -80,6 +80,11 @@ describe("player store", () => {
 				method: player.setExpanded,
 				args: false,
 				helper: "setExpandedStatus"
+			},
+			{
+				method: player.setCurrentEpisodeTimeElapsed,
+				args: 20,
+				helper: "setEpisodeTimeElapsed"
 			}
 		];
 		describe.each(scenarios)("WHEN the $method method is fired", ({ method, args, helper }) => {
