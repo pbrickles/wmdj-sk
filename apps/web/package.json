@@ -48,6 +48,6 @@
 		"radix-svelte": "^0.9.0",
 		"tailwind-merge": "^1.14.0",
 		"tailwindcss-animate": "^1.0.6",
-		"unplugin-icons": "^0.16.5"
+		"unplugin-icons": "^0.17.0"
 	}
 }
