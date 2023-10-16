@@ -1,9 +1,13 @@
 <script lang="ts">
+	import CardHeader from "$components/ui/card/card-header.svelte";
+	import CardTitle from "$components/ui/card/card-title.svelte";
+	import Card from "$components/ui/card/card.svelte";
 	import PageInner from "$components/ui/page-layout/PageInner.svelte";
 	import Heading from "$components/ui/typography/heading/Heading.svelte";
 	import { PortableText } from "@portabletext/svelte";
 
 	export let data;
+	console.log(data);
 </script>
 
 <PageInner>
@@ -14,17 +18,23 @@
 		<ul>
 			{#each data.body.posts as post}
 				<li>
-					<img
-						src={post.mainImageUrl}
-						alt={post.mainImage.alt}
-						height="200"
-						width="200"
-						loading="lazy"
-					/>
-					<h2><a href={`/blog/${post.slug.current}`}>{post.title}</a></h2>
-					<div>
-						<PortableText value={post.excerptPortableText} />
-					</div>
+					<Card>
+						<CardHeader>
+							<img
+								src={post.mainImageUrl}
+								alt={post.mainImage.alt}
+								height="200"
+								width="200"
+								loading="lazy"
+							/>
+						</CardHeader>
+						<CardTitle>
+							<a href={`/blog/${post.slug.current}`}>{post.title}</a></CardTitle
+						>
+						<div>
+							<PortableText value={post.excerpt} />
+						</div>
+					</Card>
 				</li>
 			{/each}
 		</ul>

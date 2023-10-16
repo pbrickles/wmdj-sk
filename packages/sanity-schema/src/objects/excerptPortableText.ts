@@ -1,7 +1,7 @@
 import { defineArrayMember, defineType } from "@sanity-typed/types";
 
 export const excerptPortableTextSchema = defineType({
-	name: "excerptPortableText",
+	name: "excerpt",
 	title: "Excerpt",
 	type: "array",
 	description:
