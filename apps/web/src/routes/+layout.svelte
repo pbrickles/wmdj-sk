@@ -10,7 +10,7 @@
 	import FooterNav from "$components/ui/footer/FooterNav.svelte";
 	import Header from "$components/ui/header/Header.svelte";
 	import SkipToMainLink from "$components/ui/SkipToMainLink.svelte";
-	import ContentContainer from "$components/ui/ContentContainer.svelte";
+	import ContentContainer from "$components/ui/page-layout/ContentContainer.svelte";
 	import Footer from "$components/ui/footer/Footer.svelte";
 
 	export let data;
