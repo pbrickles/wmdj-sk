@@ -2,8 +2,9 @@ import { client } from "../sanity";
 import type { Post } from "sanity-schema";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { urlFor } from "./urlFor";
+import type { FetchedPost } from "$lib/types/posts";
 
-export async function fetchPosts() {
+export async function fetchPosts(): Promise<FetchedPost[]> {
 	const sanityPosts = await client.fetch<Post[]>(
 		'*[_type == "post" && !(_id in path("drafts.**"))] | order(_createdAt desc)'
 	);

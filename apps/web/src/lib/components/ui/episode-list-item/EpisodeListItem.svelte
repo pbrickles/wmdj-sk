@@ -31,7 +31,7 @@
 		/>
 	</div>
 	<article class="flex flex-col justify-between">
-		<Heading level={3} class="pt-2 mb-5 uppercase">
+		<Heading level="h3" class="pt-2 mb-5 uppercase">
 			<a href={slug}>{attributes.title}</a></Heading
 		>
 		<p class="font-normal tracking-wider mb-4">

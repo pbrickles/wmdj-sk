@@ -41,6 +41,7 @@
 		"@fontsource/poppins": "^5.0.3",
 		"@sanity/client": "^6.1.2",
 		"@sanity/image-url": "^1.0.2",
+		"bits-ui": "^0.6.1",
 		"class-variance-authority": "^0.7.0",
 		"clsx": "^2.0.0",
 		"lodash": "^4.17.21",

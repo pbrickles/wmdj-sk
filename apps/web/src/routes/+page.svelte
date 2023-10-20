@@ -35,7 +35,7 @@
 <div class="pt-sm mb-lg sm:grid md:gap-1 md:grid-cols-4 lg:grid-cols-12">
 	<div class="flex flex-col lg:justify-center sm:col-span-2 lg:col-span-4 lg:mb-8">
 		<Heading
-			level={1}
+			level="h1"
 			class="font-bold italic mb-6 max-w-[350px] md:text-8 md:mt-4 md:mb-8 lg:text-[82px] lg:leading-[100%] lg:mb-10 lg:max-w-[200px] "
 		>
 			Why Mums Don't Jump
@@ -54,7 +54,7 @@
 </div>
 
 <div>
-	<Heading level={2} class="mb-md text-[26px] md:text-[28px] italic">The podcast</Heading>
+	<Heading level="h2" class="mb-md text-[26px] md:text-[28px] italic">The podcast</Heading>
 	<Tabs value={tabs[0].value}>
 		<TabsList class="mb-lg">
 			{#each tabs as tab}

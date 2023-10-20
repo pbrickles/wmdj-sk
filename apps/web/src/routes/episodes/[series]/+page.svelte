@@ -1,5 +1,6 @@
 <script lang="ts">
 	import EpisodeList from "$components/ui/episode-list/EpisodeList.svelte";
+	import Heading from "$components/ui/typography/heading/Heading.svelte";
 
 	export let data;
 	$: episodes = data.body.seriesEpisodes;
@@ -7,5 +8,5 @@
 	console.log(data);
 </script>
 
-<h1>Series {series}</h1>
+<Heading level="h1">Series {series}</Heading>
 <EpisodeList {episodes} />
