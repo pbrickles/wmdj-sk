@@ -7,7 +7,7 @@
 	export let level: HeadingLevel;
 
 	const variant: Record<HeadingLevel, string> = {
-		h1: "text-4xl lg:text-5xl",
+		h1: "text-4xl lg:text-6xl",
 		h2: "text-3xl ",
 		h3: "text-2xl",
 		h4: "text-xl",

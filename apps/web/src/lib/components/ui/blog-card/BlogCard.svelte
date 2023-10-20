@@ -16,18 +16,19 @@
 			<img src={post.mainImageUrl} alt={post.mainImage.alt} loading="lazy" />
 		</AspectRatio>
 	</CardHeader>
-	<CardTitle class="my-2">
+	<CardTitle class="my-6">
 		<Heading level="h2" class="italic"
 			><a href={`/blog/${post.slug.current}`} class="hover:text-pinkDark transition-colors"
 				>{post.title}</a
 			></Heading
 		>
 	</CardTitle>
-	<CardContent class="p-0">
+	<CardContent class="p-0 text-lg">
 		<PortableText value={post.excerpt} />
 		<a
 			href={`/blog/${post.slug.current}`}
-			class={cn(buttonVariants({ variant: "light" }), "tracking-wider mt-6")}>Read more here</a
+			class={cn(buttonVariants({ variant: "light" }), "py-6 text-lg tracking-wider mt-8")}
+			>Read more here</a
 		>
 	</CardContent>
 </Card>

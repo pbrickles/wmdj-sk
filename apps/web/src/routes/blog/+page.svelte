@@ -11,7 +11,7 @@
 	{#if data.body.posts.length === 0}
 		<p>No posts yet.</p>
 	{:else}
-		<ul class="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+		<ul class="md:grid md:grid-cols-2 md:gap-12 lg:grid-cols-3 lg:gap-16">
 			{#each data.body.posts as post}
 				<li>
 					<BlogCard {post} />
